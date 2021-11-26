@@ -4,8 +4,8 @@ import Tasks from './tasks'
 import AddTask from './add_task'
 
 class ClassApp extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
 
         this.state = {
             showAddTask: false,
