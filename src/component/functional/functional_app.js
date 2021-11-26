@@ -1,44 +1,64 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Header from './header'
 import Tasks from './tasks'
 import AddTask from './add_task'
+import { API } from '../../api/common'
 
 function FunctionalApp() {
     const [showAddTask, setShowAddTask] = useState(false)
 
-    const [tasks, setTasks] = useState([
-        {
-            id: 1,
-            text: 'text1',
-            day: 'Feb 5th at 2:30pm',
-            reminder: true
-        },
-        {
-            id: 2,
-            text: 'text2',
-            day: 'Feb 6th at 1:30pm',
-            reminder: true
-        },
-        {
-            id: 3,
-            text: 'text3',
-            day: 'Feb 5th at 2:30pm',
-            reminder: false
-        },
-    ])
+    const [tasks, setTasks] = useState([])
 
-    const addTask = (task) => {
-        const id = Math.floor(Math.random() * 10000) + 1
-        const newTask = { id, ...task }
-        setTasks([...tasks, newTask])
+    const api = new API()
+
+    const initTask = async () => {
+        const result = await api.getTasks()
+
+        if (result.code == 1) {
+            setTasks(result.data)
+        }
     }
 
-    const deleteTask = (id) => {
-        setTasks(tasks.filter((task) => task.id !== id))
+    useEffect(async () => {
+        await initTask()
+    }, [])
+
+    const addTask = async (task) => {
+        const result = await api.addTask(task)
+
+        if (result.code == 1) {
+            setTasks([...tasks, result.data])
+        } else {
+            alert(result.data)
+        }
     }
 
-    const toggleReminder = (id) => {
-        setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: !task.reminder } : task))
+    const deleteTask = async (id) => {
+        const result = await api.deleteTask(id)
+
+        if (result.code == 1) {
+            const task = tasks.find((element) => element.id == result.data)
+            task.hide = true
+
+            setTasks(tasks.filter((element) => !element.hide))
+        } else {
+            alert(result.data)
+        }
+    }
+
+    const toggleReminder = async (id) => {
+        const result = await api.toggleReminder(id)
+
+        if (result.code == 1) {
+            const task = tasks.find((element) => element.id == result.data)
+            task.reminder = !task.reminder
+
+            console.log(task)
+
+            setTasks([...tasks])
+        } else {
+            alert(result.data)
+        }
     }
 
     return (
