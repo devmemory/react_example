@@ -16,6 +16,8 @@ function FunctionalApp() {
 
         if (result.code == 1) {
             setTasks(result.data)
+        } else {
+            alert(result.data)
         }
     }
 
