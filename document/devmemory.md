@@ -2,6 +2,10 @@
 
 - 상태관리 라이브러리 스터디 예정(아마도 redux..?)
 
+## fetch 에러 처리
+ 1. fetch에러는 try catch에서 type error만 검출(?)
+ 2. status code에 따라 throw하는 로직 추가 필요..
+
 ## fetch 사용 위치
  1. class형 : onMount에서 콜
  2. function형 : useEffect에서 콜 (두번째 인자 빈 배열로 안넣으면 무한루프)
