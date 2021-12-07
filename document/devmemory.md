@@ -2,6 +2,14 @@
 
 - 상태관리 라이브러리 스터디 예정(아마도 redux..?)
 
+## node express추가
+ 1. server 로직 추가
+ 2. 구조화 테스트 완료
+
+## 로직 개선
+ 1. 서버쪽 validation처리 개선
+ 2. 클라이언트쪽 fetch util추가
+
 ## fetch 에러 처리
  1. fetch에러는 try catch에서 type error만 검출(?)
  2. status code에 따라 throw하는 로직 추가 필요..

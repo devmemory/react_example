@@ -9,8 +9,8 @@ import ClassApp from './component/class/class_app'
 ReactDOM.render(
   <React.StrictMode>
     {/* <App /> */}
-    {/* <FunctionalApp /> */}
-    <ClassApp />
+    <FunctionalApp />
+    {/* <ClassApp /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

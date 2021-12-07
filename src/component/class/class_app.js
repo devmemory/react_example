@@ -22,7 +22,7 @@ class ClassApp extends Component {
 
     async initTask() {
         const result = await this.api.getTasks()
-        if (result.code == 1) {
+        if (result.code === 1) {
             this.setState({ tasks: result.data })
         } else {
             alert(result.data)
@@ -35,7 +35,7 @@ class ClassApp extends Component {
 
     async addTask(task) {
         const result = await this.api.addTask(task)
-        if (result.code == 1) {
+        if (result.code === 1) {
             this.setState({ tasks: [...this.state.tasks, result.data] })
         } else {
             alert(result.data)
@@ -44,8 +44,8 @@ class ClassApp extends Component {
 
     async deleteTask(id) {
         const result = await this.api.deleteTask(id)
-        if (result.code == 1) {
-            const task = this.state.tasks.find((element) => element.id == result.data)
+        if (result.code === 1) {
+            const task = this.state.tasks.find((element) => element.id === result.data)
             task.hide = true
 
             this.setState({ tasks: this.state.tasks.filter((element) => !element.hide) })
@@ -56,8 +56,8 @@ class ClassApp extends Component {
 
     async toggleReminder(id) {
         const result = await this.api.toggleReminder(id)
-        if (result.code == 1) {
-            const task = this.state.tasks.find((element) => element.id == result.data)
+        if (result.code === 1) {
+            const task = this.state.tasks.find((element) => element.id === result.data)
             task.reminder = !task.reminder
 
             this.setState({ tasks: this.state.tasks })

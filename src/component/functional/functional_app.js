@@ -14,7 +14,7 @@ function FunctionalApp() {
     const initTask = async () => {
         const result = await api.getTasks()
 
-        if (result.code == 1) {
+        if (result.code === 1) {
             setTasks(result.data)
         } else {
             alert(result.data)
@@ -28,7 +28,7 @@ function FunctionalApp() {
     const addTask = async (task) => {
         const result = await api.addTask(task)
 
-        if (result.code == 1) {
+        if (result.code === 1) {
             setTasks([...tasks, result.data])
         } else {
             alert(result.data)
@@ -38,8 +38,8 @@ function FunctionalApp() {
     const deleteTask = async (id) => {
         const result = await api.deleteTask(id)
 
-        if (result.code == 1) {
-            const task = tasks.find((element) => element.id == result.data)
+        if (result.code === 1) {
+            const task = tasks.find((element) => element.id === result.data)
             task.hide = true
 
             setTasks(tasks.filter((element) => !element.hide))

@@ -1,5 +1,5 @@
 import {tryFetch} from '../util/util'
-const baseURL = "http://localhost:8080"
+const baseURL = "api"
 
 // 성공: code: 1, data : object
 // 실패: code: -1, data : 실패 message
