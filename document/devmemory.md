@@ -5,6 +5,7 @@
 ## node express추가
  1. server 로직 추가
  2. 구조화 테스트 완료
+ 3. proxy로 middle ware사용중
 
 ## 로직 개선
  1. 서버쪽 validation처리 개선
