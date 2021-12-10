@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
-import Header from './header'
-import Tasks from './tasks'
-import AddTask from './add_task'
+import Header from '../../component/functional/header'
+import Tasks from '../../component/functional/tasks'
+import AddTask from '../../component/functional/add_task'
 import { API } from '../../api/common'
 
 function FunctionalApp() {

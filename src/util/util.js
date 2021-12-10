@@ -1,3 +1,6 @@
+import axios from "axios"
+
+// fetch
 const tryFetch = async (url,option) => {
     let data
     let code
@@ -24,4 +27,29 @@ const tryFetch = async (url,option) => {
     }
 }
 
-export { tryFetch }
+// axios
+const response = async (url,method,data) => {
+    let result
+    let code
+
+    try {
+        const res = await axios({url, method, data})
+
+        result = res.data.data
+        code = res.data.code
+
+        if(res.status !== 200){
+            throw new Error(`Failed to fetch. status : ${res.status}`)
+        }
+    } catch(e){
+        result = e
+        code = -1
+    }
+
+    return {
+        data: result,
+        code
+    }
+}
+
+export { tryFetch, response }
