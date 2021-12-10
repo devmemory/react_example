@@ -6,6 +6,7 @@ import FunctionalApp from './functional/functional_app'
 import Main from './main'
 import RouterExample from './router/router_example'
 import ContextExample from './context/context_example'
+import LocalStorageExample from './storage/storage_example'
 
 class Index extends Component {
     render() {
@@ -18,6 +19,7 @@ class Index extends Component {
                     <Route path='/class' element={<ClassApp />} />
                     <Route path='/functional' element={<FunctionalApp />} />
                     <Route path='/context' element={<ContextExample />} />
+                    <Route path='/storage' element={<LocalStorageExample />} />
                 </Routes>
             </BrowserRouter>
         )

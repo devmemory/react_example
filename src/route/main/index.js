@@ -22,6 +22,9 @@ class Main extends Component {
                 <li>
                 <Link to='/context'>Context Example</Link>
                 </li>
+                <li>
+                <Link to='/storage'>Storage Example</Link>
+                </li>
             </ul>
         )
     }
