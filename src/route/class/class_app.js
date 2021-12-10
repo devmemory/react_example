@@ -1,7 +1,7 @@
 import { Component } from "react"
-import Header from './header'
-import Tasks from './tasks'
-import AddTask from './add_task'
+import Header from '../../component/class/header'
+import Tasks from '../../component/class/tasks'
+import AddTask from '../../component/class/add_task'
 import { API } from '../../api/common'
 
 class ClassApp extends Component {
@@ -21,6 +21,8 @@ class ClassApp extends Component {
     }
 
     async initTask() {
+        // this.api.getTasksAjax()
+
         const result = await this.api.getTasks()
         if (result.code === 1) {
             this.setState({ tasks: result.data })

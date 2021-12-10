@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
 import reportWebVitals from './reportWebVitals';
-import FunctionalApp from './component/functional/functional_app'
-import ClassApp from './component/class/class_app'
+import Index from './route';
 
-ReactDOM.render(
+const render = () => ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    {/* <FunctionalApp /> */}
-    <ClassApp />
+    <Index />
   </React.StrictMode>,
   document.getElementById('root')
 );
 
+render()
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
