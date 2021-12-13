@@ -20,10 +20,28 @@ class Main extends Component {
                     <Link to='/router/test2'>Test2</Link>
                 </li>
                 <li>
-                <Link to='/context'>Context Example</Link>
+                    <Link to='/context'>Context Example</Link>
                 </li>
                 <li>
-                <Link to='/storage'>Storage Example</Link>
+                    <Link to='/storage'>Storage Example</Link>
+                </li>
+                <li>
+                    <Link to='/error'>Error page example</Link>
+                </li>
+                <li>
+                    <Link to='/lazy'>Lazy component example</Link>
+                </li>
+                <li>
+                    <Link to='/ref'>Ref example</Link>
+                </li>
+                <li>
+                    <Link to='/hoc'>HOC example</Link>
+                </li>
+                <li>
+                    <Link to='/inheritance'>Inheritance example</Link>
+                </li>
+                <li>
+                    <Link to='/portal'>Portal example</Link>
                 </li>
             </ul>
         )
