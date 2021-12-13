@@ -5,6 +5,22 @@
  2. action
  3. store
 
+- 보류 : suspense(Future builder랑 비슷한 친구?)
+- portal : 왜 쓰는거지.. 안써도 비슷한거 간단하게 구현 가능한데...?
+
+## HOC
+ 1. with로 네이밍 ex) TaskList, withTaskList
+ 2. 여러번 재사용되는부분처리 ex) 같은 api콜 처리 로직
+
+## late import
+  let 변수명
+
+  if (typeof window !== `undefined`){
+      import("라이브러리 명").then((사용할 이름) => {
+          변수명 = 사용할 이름.default
+      })
+  }
+
 ## align center
  1. 100%는 부모 태그 크기의 100%
  2. 100vh는 부모 태그 상관없이 화면 100%
