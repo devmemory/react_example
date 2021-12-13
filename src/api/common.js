@@ -27,13 +27,28 @@ class API {
         req.send()
     }
 
-    getTasks = async (id) => {
+    getTasks = async (pageNo, pageSize) => {
         let url = `${baseURL}/task`
-        if (id != null) {
-            url += `/${id}`
-        }
+
+        url += `?pageNo=${pageNo}`
+
+
+        url += `&pageSize=${pageSize}`
+
+
+        console.log(url)
+
         const res = await response(url)
         //await tryFetch(url)
+
+        return {
+            data: res.data,
+            code: res.code
+        }
+    }
+
+    getSingleTask = async (id) => {
+        const res = await response(`${baseURL}/task/${id}`)
 
         return {
             data: res.data,
@@ -57,7 +72,7 @@ class API {
     }
 
     deleteTask = async (id) => {
-        const res = await response(`${baseURL}/task/delete`, 'POST', {id})
+        const res = await response(`${baseURL}/task/delete`, 'POST', { id })
         // await tryFetch(`${baseURL}/task/delete`, {
         //     method: "POST",
         //     headers: { "content-type": "application/json" },
@@ -71,7 +86,7 @@ class API {
     }
 
     toggleReminder = async (id) => {
-        const res = await response(`${baseURL}/task/toggle`, 'POST', {id})
+        const res = await response(`${baseURL}/task/toggle`, 'POST', { id })
         // await tryFetch(`${baseURL}/task/toggle`, {
         //     method: "POST",
         //     headers: { "content-type": "application/json" },

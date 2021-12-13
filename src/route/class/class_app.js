@@ -13,21 +13,49 @@ class ClassApp extends Component {
             tasks: []
         }
 
+        this.page = {}
+
         this.api = new API()
 
         this.addTask = this.addTask.bind(this)
         this.deleteTask = this.deleteTask.bind(this)
         this.toggleReminder = this.toggleReminder.bind(this)
+        this.pagination = this.pagination.bind(this)
     }
 
     async initTask() {
         // this.api.getTasksAjax()
 
-        const result = await this.api.getTasks()
+        const result = await this.api.getTasks(1, 12)
         if (result.code === 1) {
-            this.setState({ tasks: result.data })
+            this.page = {
+                totalPage: result.data.totalPage,
+                currentPage: result.data.currentPage,
+                lastPage: Math.ceil(result.data.totalPage / 12)
+            }
+
+            this.setState({tasks: result.data.list})
         } else {
             alert(result.data)
+        }
+    }
+
+    async pagination() {
+        console.log(this.page.currentPage, this.page.lastPage)
+        if (this.page.currentPage < this.page.lastPage) {
+            const result = await this.api.getTasks(this.page.currentPage + 1,12)
+
+            console.log(result)
+
+            if (result.code === 1) {
+                this.page.currentPage = result.data.currentPage
+
+                this.setState({ tasks: [ ...this.state.tasks, ...result.data.list ] })
+            } else {
+                alert(result.data)
+            }
+        } else {
+            alert('Last Page!')
         }
     }
 
@@ -77,6 +105,7 @@ class ClassApp extends Component {
                 {this.state.showAddTask && <AddTask onAdd={this.addTask} />}
                 {this.state.tasks.length > 0 ?
                     <Tasks tasks={this.state.tasks} onDelete={this.deleteTask} onToggle={this.toggleReminder} /> : 'No tasks to show'}
+                <button onClick={this.pagination}>show more</button>
             </div>
         )
     }

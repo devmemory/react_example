@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const url = require('url')
 
 let tasks = require('./tasks')
 
@@ -25,9 +26,32 @@ const validateData = (data, type) => {
 }
 
 router.get('/task', (req, res) => {
-    console.log('get all tasks')
+    console.log('get all tasks', req)
 
-    res.send({ data: tasks.filter((element) => !element.hide), code: 1 })
+    const pageNo = req.query.pageNo
+    const pageSize = req.query.pageSize ?? 12
+
+    const list = tasks.filter((element) => !element.hide)
+
+    if (!pageNo) {
+        res.send({ data: list, code: 1 })
+    } else {
+
+        // 전체 페이지수가 요청수보다 적을 때
+        if (pageSize > list.length) {
+            res.send({ data: list, code: 1 })
+            return
+        }
+
+        const size = pageSize * pageNo - 1
+
+        const start = (pageNo - 1) * pageSize
+        const end = size > list.length ? list.length : size
+
+        console.log('page : ', { start, end })
+
+        res.send({ data: { list: list.slice(start, end), currentPage: Number(pageNo), totalPage: tasks.length }, code: 1 })
+    }
 })
 
 router.get('/task/:no', (req, res) => {
