@@ -55,7 +55,7 @@ function FunctionalApp() {
         const result = await api.addTask(task)
 
         if (result.code === 1) {
-            setTasks([...tasks, result.data])
+            setTasks([result.data, ...tasks])
         } else {
             alert(result.data)
         }

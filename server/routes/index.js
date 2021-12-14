@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const url = require('url')
 
 let tasks = require('./tasks')
 
@@ -31,7 +30,7 @@ router.get('/task', (req, res) => {
     const pageNo = req.query.pageNo
     const pageSize = req.query.pageSize ?? 12
 
-    const list = tasks.filter((element) => !element.hide)
+    const list = tasks.filter((element) => !element.hide).reverse()
 
     if (!pageNo) {
         res.send({ data: list, code: 1 })

@@ -65,7 +65,7 @@ class ClassApp extends Component {
     async addTask(task) {
         const result = await this.api.addTask(task)
         if (result.code === 1) {
-            this.setState({ tasks: [...this.state.tasks, result.data] })
+            this.setState({ tasks: [result.data, ...this.state.tasks] })
         } else {
             alert(result.data)
         }
