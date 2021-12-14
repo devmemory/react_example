@@ -21,7 +21,7 @@ export const CircleButton = styled.button`
 `;
 
 export const Center = styled.div`
-    height: 100%;
+    height: ${(props) => props.height};
     width: 100%;
     display: grid;
     place-content: center;
@@ -50,4 +50,20 @@ export const ModalContent = styled.div`
     padding: 20px 40px 20px 40px;
     text-align: center;
     border-radius: 20px;
+`;
+
+export const PageButton = styled.div`
+    height: 20px;
+    width: 20px;
+    margin: 4px;
+    display: inline-block;
+    background: ${(props) => props.background};
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+
+    &:hover {
+        background: #b4b4b4
+    }
 `;

@@ -50,7 +50,7 @@ router.get('/task', (req, res) => {
 
         console.log('page : ', { start, end })
 
-        res.send({ data: { list: list.slice(start, end), currentPage: Number(pageNo), totalPage: tasks.length }, code: 1 })
+        res.send({ data: { list: list.slice(start, end), currentPage: Number(pageNo), totalCount: tasks.length }, code: 1 })
     }
 })
 

@@ -3,6 +3,8 @@ import Header from '../../component/class/header'
 import Tasks from '../../component/class/tasks'
 import AddTask from '../../component/class/add_task'
 import { API } from '../../api/common'
+import { Center, PageButton } from "../../style/styled"
+import { MoonLoader } from "react-spinners"
 
 class ClassApp extends Component {
     constructor() {
@@ -10,7 +12,7 @@ class ClassApp extends Component {
 
         this.state = {
             showAddTask: false,
-            tasks: []
+            tasks: [],
         }
 
         this.page = {}
@@ -29,28 +31,25 @@ class ClassApp extends Component {
         const result = await this.api.getTasks(1, 12)
         if (result.code === 1) {
             this.page = {
-                totalPage: result.data.totalPage,
+                totalCount: result.data.totalCount,
                 currentPage: result.data.currentPage,
-                lastPage: Math.ceil(result.data.totalPage / 12)
+                lastPage: Math.ceil(result.data.totalCount / 12)
             }
 
-            this.setState({tasks: result.data.list})
+            this.setState({ tasks: result.data.list })
         } else {
             alert(result.data)
         }
     }
 
-    async pagination() {
-        console.log(this.page.currentPage, this.page.lastPage)
-        if (this.page.currentPage < this.page.lastPage) {
-            const result = await this.api.getTasks(this.page.currentPage + 1,12)
-
-            console.log(result)
+    async pagination(index) {
+        if (index <= this.page.lastPage) {
+            const result = await this.api.getTasks(index, 12)
 
             if (result.code === 1) {
                 this.page.currentPage = result.data.currentPage
 
-                this.setState({ tasks: [ ...this.state.tasks, ...result.data.list ] })
+                this.setState({ tasks: result.data.list })
             } else {
                 alert(result.data)
             }
@@ -97,15 +96,30 @@ class ClassApp extends Component {
     }
 
     render() {
+        if (this.state.tasks.length === 0) {
+            return (
+                <Center height='100vh'>
+                    <MoonLoader />
+                </Center>
+            )
+        }
+
         return (
             <div className="container">
                 <Header
                     onAdd={() => this.setState({ showAddTask: !this.state.showAddTask })}
                     showAdd={this.state.showAddTask} />
+
                 {this.state.showAddTask && <AddTask onAdd={this.addTask} />}
+
                 {this.state.tasks.length > 0 ?
                     <Tasks tasks={this.state.tasks} onDelete={this.deleteTask} onToggle={this.toggleReminder} /> : 'No tasks to show'}
-                <button onClick={this.pagination}>show more</button>
+
+                {Array.from({ length: this.page.lastPage }, (_, i) => (
+                    <PageButton key={i} background={this.page.currentPage === i + 1 ? '#bebebe' : 'grey'} onClick={() => this.pagination(i + 1)}>
+                        {i + 1}
+                    </PageButton>
+                ))}
             </div>
         )
     }
