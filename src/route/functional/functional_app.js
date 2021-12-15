@@ -15,14 +15,16 @@ function FunctionalApp() {
 
     const api = new API()
 
+    const pageSize = 12
+
     const initTask = async () => {
-        const result = await api.getTasks(1, 12)
+        const result = await api.getTasks(1, pageSize)
 
         if (result.code === 1) {
             page = {
                 totalCount: result.data.totalCount,
                 currentPage: result.data.currentPage,
-                lastPage: Math.ceil(result.data.totalCount / 12)
+                lastPage: Math.ceil(result.data.totalCount / pageSize)
             }
 
             setTasks(result.data.list)
@@ -33,7 +35,7 @@ function FunctionalApp() {
 
     const pagination = async (index) => {
         if (index <= page.lastPage) {
-            const result = await api.getTasks(index, 12)
+            const result = await api.getTasks(index, pageSize)
 
             if (result.code === 1) {
                 page.currentPage = result.data.currentPage
@@ -81,7 +83,7 @@ function FunctionalApp() {
             const task = tasks.find((element) => element.id == result.data)
             task.reminder = !task.reminder
 
-            setTasks([...tasks])
+            setTasks(tasks)
         } else {
             alert(result.data)
         }

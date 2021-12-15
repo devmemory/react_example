@@ -17,6 +17,8 @@ class ClassApp extends Component {
 
         this.page = {}
 
+        this.pageSize = 12
+
         this.api = new API()
 
         this.addTask = this.addTask.bind(this)
@@ -28,12 +30,12 @@ class ClassApp extends Component {
     async initTask() {
         // this.api.getTasksAjax()
 
-        const result = await this.api.getTasks(1, 12)
+        const result = await this.api.getTasks(1, this.pageSize)
         if (result.code === 1) {
             this.page = {
                 totalCount: result.data.totalCount,
                 currentPage: result.data.currentPage,
-                lastPage: Math.ceil(result.data.totalCount / 12)
+                lastPage: Math.ceil(result.data.totalCount / this.pageSize)
             }
 
             this.setState({ tasks: result.data.list })
@@ -44,7 +46,7 @@ class ClassApp extends Component {
 
     async pagination(index) {
         if (index <= this.page.lastPage) {
-            const result = await this.api.getTasks(index, 12)
+            const result = await this.api.getTasks(index, this.pageSize)
 
             if (result.code === 1) {
                 this.page.currentPage = result.data.currentPage

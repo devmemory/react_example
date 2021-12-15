@@ -43,6 +43,9 @@ class Main extends Component {
                 <li>
                     <Link to='/portal'>Portal example</Link>
                 </li>
+                <li>
+                <Link to='/bootstrap'>Bootstrap example</Link>
+                </li>
             </ul>
         )
     }

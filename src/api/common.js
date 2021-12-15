@@ -30,10 +30,13 @@ class API {
     getTasks = async (pageNo, pageSize) => {
         let url = `${baseURL}/task`
 
-        url += `?pageNo=${pageNo}`
+        if(pageNo){
+            url += `?pageNo=${pageNo}`
+        }
 
-
-        url += `&pageSize=${pageSize}`
+        if(pageSize){
+            url += `&pageSize=${pageSize}`
+        }
 
 
         console.log(url)
