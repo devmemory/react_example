@@ -98,7 +98,7 @@ class ClassApp extends Component {
     }
 
     render() {
-        if (this.state.tasks.length === 0) {
+        if (this.state.tasks?.length === 0) {
             return (
                 <Center height='100vh'>
                     <MoonLoader />
@@ -114,7 +114,7 @@ class ClassApp extends Component {
 
                 {this.state.showAddTask && <AddTask onAdd={this.addTask} />}
 
-                {this.state.tasks.length > 0 ?
+                {this.state.tasks?.length ?? 0 > 0 ?
                     <Tasks tasks={this.state.tasks} onDelete={this.deleteTask} onToggle={this.toggleReminder} /> : 'No tasks to show'}
 
                 {Array.from({ length: this.page.lastPage }, (_, i) => (

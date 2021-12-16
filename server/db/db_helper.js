@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose()
 
-let db = new sqlite3.Database('./chinook.db', (error) => {
+let db = new sqlite3.Database('./server/db/chinook.db', (error) => {
     if (error) {
         console.log(error.message)
         return
