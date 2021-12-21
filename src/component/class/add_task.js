@@ -5,7 +5,7 @@ class AddTask extends Component {
         super(props)
 
         this.state = {
-            text: "",
+            title: "",
             day: "",
             reminder: false
         }
@@ -16,15 +16,15 @@ class AddTask extends Component {
     onSubmit(e) {
         e.preventDefault()
 
-        if (this.state.text === "") {
+        if (this.state.title === "") {
             alert('Please add a task')
             return
         }
 
-        this.props.onAdd({ text: this.state.text, day: this.state.day, reminder: this.state.reminder })
+        this.props.onAdd({ title: this.state.title, day: this.state.day, reminder: this.state.reminder })
 
         this.setState({
-            text: "",
+            title: "",
             day: "",
             reminder: false
         })
@@ -35,7 +35,7 @@ class AddTask extends Component {
             <form className="add-form" onSubmit={(e) => this.onSubmit(e)}>
                 <div className="form-control">
                     <label>Task</label>
-                    <input type="text" placeholder="Add Task" value={this.state.text} onChange={(e) => this.setState({text: e.target.value})} />
+                    <input type="text" placeholder="Add Task" value={this.state.title} onChange={(e) => this.setState({title: e.target.value})} />
                 </div>
                 <div className="form-control">
                     <label>Day & Time</label>

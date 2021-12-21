@@ -70,7 +70,7 @@ router.post('/task/add', (req, res) => {
 
     console.log('task add', data)
 
-    if (validateData(data.text, 'string') && validateData(data.day, "string") && validateData(data.reminder, "boolean")) {
+    if (validateData(data.title, 'string') && validateData(data.day, "string") && validateData(data.reminder, "boolean")) {
         const newTest = { id: tasks.length + 1, ...data }
 
         tasks.push(newTest)

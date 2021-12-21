@@ -13,7 +13,7 @@ import RefExample from './ref/ref_example'
 import HOCExample from './hoc/hoc_example'
 import InheritanceExample from './inheritance/inheritance'
 import PortalExample from './portal/portal'
-import BootstrapExample from './bootstrap/bootstrap_example'
+// import BootstrapExample from './bootstrap/bootstrap_example'
 
 class Index extends Component {
     render() {
@@ -33,7 +33,7 @@ class Index extends Component {
                     <Route path='/hoc' element={<HOCExample />} />
                     <Route path='/inheritance' element={<InheritanceExample />} />
                     <Route path='/portal' element={<PortalExample />} />
-                    <Route path='/bootstrap' element={<BootstrapExample />} />
+                    {/* <Route path='/bootstrap' element={<BootstrapExample />} /> */}
                 </Routes>
             </BrowserRouter>
         )
