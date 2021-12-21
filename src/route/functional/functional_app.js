@@ -57,7 +57,11 @@ function FunctionalApp() {
         const result = await api.addTask(task)
 
         if (result.code === 1) {
-            setTasks([result.data, ...tasks])
+            if(tasks){
+                setTasks([result.data, ...tasks])
+            } else{
+                setTasks([result.data])
+            }
         } else {
             alert(result.data)
         }
@@ -103,7 +107,7 @@ function FunctionalApp() {
 
             {showAddTask && <AddTask onAdd={addTask} />}
 
-            {tasks?.length ?? 0 > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : 'No tasks to show'}
+            {(tasks?.length ?? 0 > 0) ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : 'No tasks to show'}
 
             {Array.from({ length: page.lastPage ?? 0 }, (_, i) => (
                 <PageButton key={i} background={page.currentPage === i + 1 ? '#bebebe' : 'grey'} onClick={() => pagination(i + 1)}>

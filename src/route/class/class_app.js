@@ -67,7 +67,11 @@ class ClassApp extends Component {
     async addTask(task) {
         const result = await this.api.addTask(task)
         if (result.code === 1) {
-            this.setState({ tasks: [result.data, ...this.state.tasks] })
+            if(this.state.tasks){
+                this.setState({ tasks: [result.data, ...this.state.tasks] })
+            } else{
+                this.setState({ tasks: [result.data] })
+            }
         } else {
             alert(result.data)
         }
@@ -114,7 +118,7 @@ class ClassApp extends Component {
 
                 {this.state.showAddTask && <AddTask onAdd={this.addTask} />}
 
-                {this.state.tasks?.length ?? 0 > 0 ?
+                {(this.state.tasks?.length ?? 0) > 0 ?
                     <Tasks tasks={this.state.tasks} onDelete={this.deleteTask} onToggle={this.toggleReminder} /> : 'No tasks to show'}
 
                 {Array.from({ length: this.page.lastPage }, (_, i) => (

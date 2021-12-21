@@ -8,6 +8,14 @@
 - 보류 : suspense(Future builder랑 비슷한 친구?)
 - portal : 왜 쓰는거지.. 안써도 비슷한거 간단하게 구현 가능한데...?
 
+## class, function app 에러처리(tasks가 빈 배열일때)
+
+## sqlite3 연결 완료
+ 1. 비동기처리 안됨 (1차 멘붕)
+ 2. Promise 사용해서 강제 비동기 처리.. (왜 이렇게 써야되는데..)
+ 3. range 처리 필요
+ 4. 단일 값 받아오기 필요
+
 ## loading, pagination 처리 완료
 
 ## HOC

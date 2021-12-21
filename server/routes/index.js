@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-let tasks = require('./tasks')
+const db = require('../db/db_helper')
+
+const initTask = require('./tasks')
+let tasks
 
 const validateData = (data, type) => {
     if (typeof data != type || typeof data == 'undefined' || data === '') {
@@ -24,8 +27,10 @@ const validateData = (data, type) => {
     return true
 }
 
-router.get('/task', (req, res) => {
-    console.log('get all tasks', req)
+router.get('/task', async (req, res) => {
+    console.log('get all tasks')
+
+    tasks = await initTask()
 
     const pageNo = req.query.pageNo
     const pageSize = req.query.pageSize ?? 12
@@ -33,12 +38,12 @@ router.get('/task', (req, res) => {
     const list = tasks.filter((element) => !element.hide).reverse()
 
     if (!pageNo) {
-        res.send({ data: list, code: 1 })
+        res.send({ data: list, code: 1, currentPage: -1, totalCount: tasks.length })
     } else {
 
         // 전체 페이지수가 요청수보다 적을 때
         if (pageSize > list.length) {
-            res.send({ data: list, code: 1 })
+            res.send({ data: { list: list, currentPage: Number(pageNo), totalCount: tasks.length }, code: 1 })
             return
         }
 
@@ -65,7 +70,7 @@ router.get('/task/:no', (req, res) => {
     }
 })
 
-router.post('/task/add', (req, res) => {
+router.post('/task/add', async (req, res) => {
     const data = req.body
 
     console.log('task add', data)
@@ -73,37 +78,49 @@ router.post('/task/add', (req, res) => {
     if (validateData(data.title, 'string') && validateData(data.day, "string") && validateData(data.reminder, "boolean")) {
         const newTest = { id: tasks.length + 1, ...data }
 
-        tasks.push(newTest)
+        if (await db.insert(newTest)) {
+            tasks.push(newTest)
 
-        res.send({ data: newTest, code: 1 })
+            res.send({ data: newTest, code: 1 })
+        } else {
+            res.send({ data: `Request failed. (DB insert failed)`, code: -1 })
+        }
     } else {
         res.send({ data: `Request failed. (${JSON.stringify(data)})`, code: -1 })
     }
 })
 
-router.post('/task/delete', (req, res) => {
+router.post('/task/delete', async (req, res) => {
     const data = req.body
     console.log('task delete', data)
 
     const task = tasks.find((element) => element.id == data.id)
 
     if (validateData(task, 'object')) {
-        task.hide = true
-        res.send({ data: task.id, code: 1 })
+        if (await db.updateTask('hide', true, task.id)) {
+            task.hide = true
+            res.send({ data: task.id, code: 1 })
+        } else {
+            res.send({ data: `Request failed. (DB update failed)`, code: -1 })
+        }
     } else {
         res.send({ data: `Request failed. (${JSON.stringify(data)})`, code: -1 })
     }
 })
 
-router.post('/task/toggle', (req, res) => {
+router.post('/task/toggle', async (req, res) => {
     const data = req.body
     console.log('task toggle', data)
 
     const task = tasks.find((element) => element.id == data.id)
 
     if (validateData(task, 'object')) {
-        task.reminder = !task.reminder
-        res.send({ data: task.id, code: 1 })
+        if (await db.updateTask('reminder', !task.reminder, task.id)) {
+            task.reminder = !task.reminder
+            res.send({ data: task.id, code: 1 })
+        } else {
+            res.send({ data: `Request failed. (DB update failed)`, code: -1 })
+        }
     } else {
         res.send({ data: `Request failed. (${JSON.stringify(data)})`, code: -1 })
     }

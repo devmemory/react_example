@@ -1,4 +1,4 @@
-import { response, tryFetch } from '../util/util'
+import { response } from '../util/util'
 const baseURL = "api"
 
 // 성공: code: 1, data : object
@@ -14,8 +14,8 @@ class API {
 
         // 내부 데이터에 따라서 별도 처리 필요..
         req.onreadystatechange = () => {
-            if (req.readyState == XMLHttpRequest.DONE) {
-                if (req.status == 200) {
+            if (req.readyState === XMLHttpRequest.DONE) {
+                if (req.status === 200) {
                     console.log(req.response)
                 } else {
                     console.log(`error', 'status code : ${req.status}`)

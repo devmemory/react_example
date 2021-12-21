@@ -6,7 +6,6 @@ const create = () => {
     db.run('create table if not exists task(id integer, title text, day text, reminder integer, hide integer)', (err) => {
         if (err) {
             console.log(err.message)
-            return
         }
 
         console.log('db created')
@@ -15,59 +14,50 @@ const create = () => {
 
 create()
 
-const insert = (task) => {
-    db.run(`insert into task(id,title,day,reminder,hide) values (?,?,?,?,?)`, [task.id, task.title, task.day, task.reminder ? 1 : 0, task.hide ? 1 : 0], (err) => {
-        if (err) {
-            console.log(err.message)
-            return
-        }
+const insert = async (task) => {
+    return new Promise((res, rej) => {
+        db.run(`insert into task(id,title,day,reminder,hide) values (?,?,?,?,?)`, [task.id, task.title, task.day, task.reminder ? 1 : 0, task.hide ? 1 : 0], (err) => {
+            if (err) {
+                console.log(err.message)
+                return res(err)
+            }
 
-        console.log(`insert task(${JSON.stringify(task)})`)
+            console.log(`insert task(${JSON.stringify(task)})`)
+            return res(true)
+        })
     })
 }
 
-const getAllData = () => {
-    // db.get('select * from task', (err, row) => {
-    //     if (err) {
-    //         console.log(err.message)
-    //         return
-    //     }
+const getAllData = async () => {
+    return new Promise((res, rej) => {
+        return db.all('select * from task', (err, rows) => {
+            if (err) {
+                console.log(err.message)
+                return rej(err)
+            }
 
-    //     console.log(`result : ${JSON.stringify(row)}`)
-    // })
-    db.all('select * from task', (err, rows) => {
-        if (err) {
-            console.log(err.message)
-            return
-        }
-
-        console.log(`result : ${JSON.stringify(rows)}`)
+            console.log(`result : ${JSON.stringify(rows)}`)
+            return res(rows)
+        })
     })
 }
 
-const updateTask = (key, value, index) => {
-    const sql = `update task set ${key} = ${value ? 1 : 0} where id = ${index}`
+const updateTask = async (key, value, index) => {
+    return new Promise((res, rej) => {
+        const sql = `update task set ${key} = ${value ? 1 : 0} where id = ${index}`
+        return db.run(sql, (err) => {
+            if (err) {
+                console.log(err.message)
+                return rej(err)
+            }
 
-    db.run(sql, (err) => {
-        if (err) {
-            console.log(err.message)
-        }
-        return
+
+            console.log(`update at ${index} => ${key} : ${value}`)
+            return res(true)
+        })
     })
-
-    console.log(`update at ${index} => ${key} : ${value}`)
-    // db.run(`update task set ${key} = (?) where id = (?)`,[key,value,index], (err) => {
-    //     if(err){
-    //         console.log(err.message)
-    //         return
-    //     }
-
-    //     console.log(`update at ${index} => ${key} : ${value}`)
-    // })
 }
-
-setTimeout(() => getAllData(), 2000)
-// setTimeout(() => updateTask('reminder', false, 1), 4000)
+// setTimeout(() => updateTask('hide', false, 3), 4000)
 
 // setTimeout(() => insert({ id: 1, title: 'Title - 1', day: 'Dec 17', reminder: false, hide: false }), 4000)
 
@@ -75,4 +65,9 @@ setTimeout(() => getAllData(), 2000)
 
 // setTimeout(() => getAllData(), 6000)
 
-module.exports = db
+module.exports = {
+    create,
+    insert,
+    getAllData,
+    updateTask
+}
