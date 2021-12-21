@@ -13,6 +13,7 @@ class ClassApp extends Component {
         this.state = {
             showAddTask: false,
             tasks: [],
+            isLoaded: false
         }
 
         this.page = {}
@@ -38,7 +39,7 @@ class ClassApp extends Component {
                 lastPage: Math.ceil(result.data.totalCount / this.pageSize)
             }
 
-            this.setState({ tasks: result.data.list })
+            this.setState({ tasks: result.data.list, isLoaded: true })
         } else {
             alert(result.data)
         }
@@ -102,7 +103,7 @@ class ClassApp extends Component {
     }
 
     render() {
-        if (this.state.tasks?.length === 0) {
+        if (!this.state.isLoaded) {
             return (
                 <Center height='100vh'>
                     <MoonLoader />

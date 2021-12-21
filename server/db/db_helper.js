@@ -36,7 +36,7 @@ const getAllData = async () => {
                 return rej(err)
             }
 
-            console.log(`result : ${JSON.stringify(rows)}`)
+            console.log(`result : ${rows?.length}`)
             return res(rows)
         })
     })

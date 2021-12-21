@@ -13,6 +13,8 @@ function FunctionalApp() {
 
     const [tasks, setTasks] = useState([])
 
+    const [isLoaded, setIsLoaded] = useState(false)
+
     const api = new API()
 
     const pageSize = 12
@@ -28,6 +30,7 @@ function FunctionalApp() {
             }
 
             setTasks(result.data.list)
+            setIsLoaded(true)
         } else {
             alert(result.data)
         }
@@ -93,7 +96,7 @@ function FunctionalApp() {
         }
     }
 
-    if (tasks?.length === 0) {
+    if (!isLoaded) {
         return (
             <Center height='100vh'>
                 <MoonLoader />

@@ -7,7 +7,7 @@ async function initTask() {
 
     const rows = await dbHelper.getAllData() ?? []
 
-    console.log('rows',`${JSON.stringify(rows)}`)
+    console.log(`task length ${rows?.length}`)
 
     rows.forEach((element, index) => {
         rows[index].reminder = element.reminder === 1
