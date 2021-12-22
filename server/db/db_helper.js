@@ -52,6 +52,12 @@ const getAllTasks = async () => {
             }
 
             console.log(`get all result : ${rows?.length}`)
+
+            rows.forEach((e, i) => {
+                rows[i].reminder = e.reminder === 1
+                rows[i].hide = e.hide === 1
+            })
+
             return res(rows)
         })
     })
@@ -65,6 +71,11 @@ const getSingleTask = async (id) => {
             if (err) {
                 console.log(err.message)
                 return rej(err)
+            }
+
+            if (row) {
+                row.reminder = row?.reminder === 1
+                row.hide = row?.hide === 1
             }
 
             console.log(`get single result : ${JSON.stringify(row)}`)
@@ -82,6 +93,11 @@ const getRange = async (start, end) => {
                 console.log(err.message)
                 return rej(err)
             }
+
+            rows.forEach((e, i) => {
+                rows[i].reminder = e.reminder === 1
+                rows[i].hide = e.hide === 1
+            })
 
             console.log(`get range result : ${rows.length}`)
             return res(rows)

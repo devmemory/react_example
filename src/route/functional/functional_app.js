@@ -87,8 +87,8 @@ function FunctionalApp() {
     const toggleReminder = async (id) => {
         const result = await api.toggleReminder(id)
 
-        if (result.code == 1) {
-            const task = tasks.find((element) => element.id == result.data)
+        if (result.code === 1) {
+            const task = tasks.find((element) => element.id === result.data)
             task.reminder = !task.reminder
 
             setTasks(tasks)
