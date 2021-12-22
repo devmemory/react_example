@@ -4,8 +4,8 @@ import Tasks from '../../component/class/tasks'
 import AddTask from '../../component/class/add_task'
 import { API } from '../../api/common'
 import { Center, PageButton } from "../../style/styled"
-import { MoonLoader } from "react-spinners"
 import '../../style/task_style.css'
+import { Spinner } from "react-bootstrap"
 
 class ClassApp extends Component {
     constructor() {
@@ -107,7 +107,7 @@ class ClassApp extends Component {
         if (!this.state.isLoaded) {
             return (
                 <Center height='100vh'>
-                    <MoonLoader />
+                    <Spinner animation='grow' />
                 </Center>
             )
         }

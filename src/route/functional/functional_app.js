@@ -4,8 +4,8 @@ import Tasks from '../../component/functional/tasks'
 import AddTask from '../../component/functional/add_task'
 import { API } from '../../api/common'
 import { Center, PageButton } from '../../style/styled'
-import { MoonLoader } from 'react-spinners'
 import '../../style/task_style.css'
+import { Spinner } from "react-bootstrap"
 
 let page = {}
 
@@ -100,7 +100,7 @@ function FunctionalApp() {
     if (!isLoaded) {
         return (
             <Center height='100vh'>
-                <MoonLoader />
+                <Spinner animation='grow' />
             </Center>
         )
     }
