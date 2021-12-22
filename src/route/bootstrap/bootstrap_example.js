@@ -1,16 +1,16 @@
-// import React, { Component } from 'react'
-// import NavBarExample from '../../component/navbar'
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import React, { Component } from 'react'
+import AlertExample from '../../component/bootstrap/alert'
+import NavBarExample from '../../component/bootstrap/navbar'
 
-// class BootstrapExample extends Component {
-//     render() {
-//         return (
-//             <>
-//                 <NavBarExample/>
+class BootstrapExample extends Component {
+    render() {
+        return (
+            <>
+                <NavBarExample/>
+                <AlertExample/>
+            </>
+        )
+    }
+}
 
-//             </>
-//         )
-//     }
-// }
-
-// export default BootstrapExample
+export default BootstrapExample

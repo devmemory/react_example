@@ -31,7 +31,7 @@ const insert = async (task) => {
 
 const getLength = async () => {
     return new Promise((res, rej) => {
-        return db.get('select count(*) from task', (err, row) => {
+        return db.get('select count(*) from task where hide = 0', (err, row) => {
             if (err) {
                 console.log(err.message)
                 return rej(err)
@@ -45,7 +45,7 @@ const getLength = async () => {
 
 const getAllTasks = async () => {
     return new Promise((res, rej) => {
-        return db.all('select * from task order by id desc', (err, rows) => {
+        return db.all('select * from task where hide = 0 order by id desc', (err, rows) => {
             if (err) {
                 console.log(err.message)
                 return rej(err)
@@ -59,7 +59,7 @@ const getAllTasks = async () => {
 
 const getSingleTask = async (id) => {
     return new Promise((res, rej) => {
-        const sql = `select * from task where id = ${id}`
+        const sql = `select * from task where id = ${id} and hide = 0`
 
         return db.get(sql, (err, row) => {
             if (err) {
@@ -75,7 +75,7 @@ const getSingleTask = async (id) => {
 
 const getRange = async (start, end) => {
     return new Promise((res, rej) => {
-        const sql = `select * from task where id between ${start} and ${end} order by id desc`
+        const sql = `select * from task where hide = 0 and id between ${start} and ${end} order by id desc`
 
         return db.all(sql, (err, rows) => {
             if (err) {

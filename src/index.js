@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Index from './route';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const render = () => ReactDOM.render(
   <React.StrictMode>

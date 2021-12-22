@@ -32,21 +32,21 @@ class AddTask extends Component {
 
     render() {
         return (
-            <form className="add-form" onSubmit={(e) => this.onSubmit(e)}>
-                <div className="form-control">
+            <form className="form-add-task" onSubmit={(e) => this.onSubmit(e)}>
+                <div className="form-control-task">
                     <label>Task</label>
                     <input type="text" placeholder="Add Task" value={this.state.title} onChange={(e) => this.setState({title: e.target.value})} />
                 </div>
-                <div className="form-control">
+                <div className="form-control-task">
                     <label>Day & Time</label>
                     <input type="text" placeholder="Add Day & Time" value={this.state.day} onChange={(e) => this.setState({day: e.target.value})} />
                 </div>
-                <div className="form-control form-control-check">
+                <div className="form-control-task form-control-check">
                     <label>Set Reminder</label>
                     <input type="checkbox" value={this.state.reminder} checked={this.state.reminder} onChange={(e) => this.setState({reminder: e.currentTarget.checked})} />
                 </div>
 
-                <input type="submit" value="Save Task" className="btn btn-block" />
+                <input type="submit" value="Save Task" className="btn-task-block" />
             </form>
         )
     }

@@ -5,6 +5,7 @@ import AddTask from '../../component/functional/add_task'
 import { API } from '../../api/common'
 import { Center, PageButton } from '../../style/styled'
 import { MoonLoader } from 'react-spinners'
+import '../../style/task_style.css'
 
 let page = {}
 
@@ -105,7 +106,7 @@ function FunctionalApp() {
     }
 
     return (
-        <div className="container">
+        <div className="div-container">
             <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} />
 
             {showAddTask && <AddTask onAdd={addTask} />}

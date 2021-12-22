@@ -6,9 +6,9 @@ class Task extends Component {
         const { task, onDelete, onToggle } = this.props
         return (
             <div className={`task ${task.reminder ? 'reminder' : ''}`} onDoubleClick={() => onToggle(task.id)}>
-                <h3>
+                <h5>
                     {task.title} <FaTimes style={{ color: 'red', cursor: 'pointer' }} onClick={() => onDelete(task.id)} />
-                </h3>
+                </h5>
                 <p>{task.day}</p>
             </div>
         )

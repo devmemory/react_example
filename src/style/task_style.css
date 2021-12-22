@@ -10,7 +10,7 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-.container {
+.div-container {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
@@ -20,14 +20,14 @@ body {
   border-radius: 5px;
 }
 
-.header {
+.header-task {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.btn {
+.btn-task {
   display: inline-block;
   background: #000;
   color: #fff;
@@ -41,15 +41,15 @@ body {
   font-family: inherit;
 }
 
-.btn:focus {
+.btn-task:focus {
   outline: none;
 }
 
-.btn:active {
+.btn-task:active {
   transform: scale(0.98);
 }
 
-.btn-block {
+.btn-task-block {
   display: block;
   width: 100%;
 }
@@ -65,25 +65,25 @@ body {
   border-left: 5px solid green;
 }
 
-.task h3 {
+.task h5 {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.add-form {
+.form-add-task {
   margin-bottom: 40px;
 }
 
-.form-control {
+.form-control-task {
   margin: 20px 0;
 }
 
-.form-control label {
+.form-control-task label {
   display: block;
 }
 
-.form-control input {
+.form-control-task input {
   width: 100%;
   height: 40px;
   margin: 5px;

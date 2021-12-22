@@ -4,7 +4,7 @@ class Button extends Component {
     render() {
         const { color, text, onClick } = this.props
         return (
-            <button onClick={onClick} style={{ backgroundColor: color }} className="btn">{text}</button>
+            <button onClick={onClick} style={{ backgroundColor: color }} className="btn-task">{text}</button>
         )
     }
 }

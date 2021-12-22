@@ -8,6 +8,10 @@
 - 보류 : suspense(Future builder랑 비슷한 친구?)
 - portal : 왜 쓰는거지.. 안써도 비슷한거 간단하게 구현 가능한데...?
 
+## sql 현재 id range로 되어있는데 hide값 생각해서 변경 필요...
+
+## bootstrap 추가 앞으로 테스트 필요
+
 ## class, function app 에러처리(tasks가 빈 배열일때)
 
 ## sqlite3 연결 완료
