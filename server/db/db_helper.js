@@ -6,6 +6,7 @@ const create = () => {
     db.run('create table if not exists task(id integer, title text, day text, reminder integer, hide integer)', (err) => {
         if (err) {
             console.log(err.message)
+            return
         }
 
         console.log('db created')
@@ -28,15 +29,61 @@ const insert = async (task) => {
     })
 }
 
-const getAllData = async () => {
+const getLength = async () => {
     return new Promise((res, rej) => {
-        return db.all('select * from task', (err, rows) => {
+        return db.get('select count(*) from task', (err, row) => {
             if (err) {
                 console.log(err.message)
                 return rej(err)
             }
 
-            console.log(`result : ${rows?.length}`)
+            console.log(`length : ${row['count(*)']}`)
+            return res(row['count(*)'])
+        })
+    })
+}
+
+const getAllTasks = async () => {
+    return new Promise((res, rej) => {
+        return db.all('select * from task order by id desc', (err, rows) => {
+            if (err) {
+                console.log(err.message)
+                return rej(err)
+            }
+
+            console.log(`get all result : ${rows?.length}`)
+            return res(rows)
+        })
+    })
+}
+
+const getSingleTask = async (id) => {
+    return new Promise((res, rej) => {
+        const sql = `select * from task where id = ${id}`
+
+        return db.get(sql, (err, row) => {
+            if (err) {
+                console.log(err.message)
+                return rej(err)
+            }
+
+            console.log(`get single result : ${JSON.stringify(row)}`)
+            return res(row)
+        })
+    })
+}
+
+const getRange = async (start, end) => {
+    return new Promise((res, rej) => {
+        const sql = `select * from task where id between ${start} and ${end} order by id desc`
+
+        return db.all(sql, (err, rows) => {
+            if (err) {
+                console.log(err.message)
+                return rej(err)
+            }
+
+            console.log(`get range result : ${rows.length}`)
             return res(rows)
         })
     })
@@ -63,11 +110,17 @@ const updateTask = async (key, value, index) => {
 
 // setTimeout(() => insert({ id: 2, title: 'Title - 2', day: 'Dec 19', reminder: true, hide: false }), 4000)
 
-// setTimeout(() => getAllData(), 6000)
+// setTimeout(() => getAllTasks(), 6000)
+
+// setTimeout(() => getLength(), 2000)
+// setTimeout(() => getSingleTask(1), 3000)
 
 module.exports = {
     create,
     insert,
-    getAllData,
-    updateTask
+    getAllTasks,
+    updateTask,
+    getRange,
+    getSingleTask,
+    getLength
 }

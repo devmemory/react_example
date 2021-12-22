@@ -3,9 +3,6 @@ const router = express.Router();
 
 const db = require('../db/db_helper')
 
-const initTask = require('./tasks')
-let tasks
-
 const validateData = (data, type) => {
     if (typeof data != type || typeof data == 'undefined' || data === '') {
         console.log('Failed 1', {
@@ -30,36 +27,40 @@ const validateData = (data, type) => {
 router.get('/task', async (req, res) => {
     console.log('get all tasks')
 
-    tasks = await initTask()
-
     const pageNo = req.query.pageNo
     const pageSize = req.query.pageSize ?? 12
 
-    const list = tasks.filter((element) => !element.hide).reverse()
+    let list
+
+    const totalCount = await db.getLength() ?? 0
 
     if (!pageNo) {
-        res.send({ data: list, code: 1, currentPage: -1, totalCount: tasks.length })
+        list = await db.getAllTasks()
+
+        res.send({ data: list, code: 1, currentPage: -1, totalCount: totalCount })
     } else {
 
         // 전체 페이지수가 요청수보다 적을 때
-        if (pageSize > list.length) {
-            res.send({ data: { list: list, currentPage: Number(pageNo), totalCount: tasks.length }, code: 1 })
+        if (pageSize > totalCount) {
+            list = await db.getAllTasks()
+
+            res.send({ data: { list: list, currentPage: Number(pageNo), totalCount: totalCount }, code: 1 })
             return
         }
 
-        const size = pageSize * pageNo - 1
-
-        const start = (pageNo - 1) * pageSize
-        const end = size > list.length ? list.length : size
+        const start = (pageNo - 1) * pageSize + 1
+        const end = pageSize * pageNo
 
         console.log('page : ', { start, end })
 
-        res.send({ data: { list: list.slice(start, end), currentPage: Number(pageNo), totalCount: tasks.length }, code: 1 })
+        list = await db.getRange(start, end)
+
+        res.send({ data: { list: list, currentPage: Number(pageNo), totalCount: totalCount }, code: 1 })
     }
 })
 
-router.get('/task/:no', (req, res) => {
-    const task = tasks.find((element) => element.id == req.params.no)
+router.get('/task/:no', async (req, res) => {
+    const task = await db.getSingleTask(req.params.no)
 
     console.log('get task', task)
 
@@ -76,10 +77,11 @@ router.post('/task/add', async (req, res) => {
     console.log('task add', data)
 
     if (validateData(data.title, 'string') && validateData(data.day, "string") && validateData(data.reminder, "boolean")) {
-        const newTest = { id: tasks.length + 1, ...data }
+        const id = await db.getLength() ?? 1
+
+        const newTest = { id: id + 1, ...data }
 
         if (await db.insert(newTest)) {
-            tasks.push(newTest)
 
             res.send({ data: newTest, code: 1 })
         } else {
@@ -94,7 +96,7 @@ router.post('/task/delete', async (req, res) => {
     const data = req.body
     console.log('task delete', data)
 
-    const task = tasks.find((element) => element.id == data.id)
+    const task = await db.getSingleTask(data.id)
 
     if (validateData(task, 'object')) {
         if (await db.updateTask('hide', true, task.id)) {
@@ -112,7 +114,7 @@ router.post('/task/toggle', async (req, res) => {
     const data = req.body
     console.log('task toggle', data)
 
-    const task = tasks.find((element) => element.id == data.id)
+    const task = await db.getSingleTask(data.id)
 
     if (validateData(task, 'object')) {
         if (await db.updateTask('reminder', !task.reminder, task.id)) {

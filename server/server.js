@@ -5,7 +5,7 @@ const app = express()
 const cors = require('cors')
 const router = require('./routes')
 
-const dbHelper = require('./db/db_helper')
+require('./db/db_helper')
 
 const port = process.env.PORT || 8080
 
