@@ -35,11 +35,63 @@
       })
   }
 
-## align center
- 1. 100%는 부모 태그 크기의 100%
- 2. 100vh는 부모 태그 상관없이 화면 100%
- 3. 가장 간단한 방법
-  - display: grid, placeContent: center 
+## 렌더링 관련
+ # 렌더링 순서
+  1. html 파싱 후 dom 트리 구성
+  2. css 파싱 후 cssdom 트리 구성
+  3. dom과 cssdom을 결합해서 렌더링 트리 구성
+  4. 렌더링 트리에서 각 노드의 크기와 위치 계산
+  5. 개별 노드를 화면에 그림
+  6. (optional) 완료후 리플로우 혹은 리페인트 발생 가능
+   - dom 추가, 제거 및 변경
+   - css 스타일 추가, 제거 및 변경
+   - 애니메이션, 트렌지션 등 사용
+   - offset 사용
+   - 유저 상호작용
+ # 최적화 방법(리플로우 최소화)
+  1. 인라인 스타일 사용 x
+  2. dom 변경시 작업 그룹핑
+   ex)
+      function change() {     
+        let width = document.getElementById("layer1").style.width;
+        let height = document.getElementById("layer3").style.height; 
+        document.getElementById("layer2").style.width = width; 
+        document.getElementById("layer4").style.height = height; 
+      }
+  3. 노출제어 : 특정 위젯을 그릴 때 display none 상태에서 style변경후 block으로 변경
+  4. 노드복제, 캐싱
+
+## 태그 간단 정리
+ # align center
+  1. 100%는 부모 태그 크기의 100%
+  2. 100vh는 부모 태그 상관없이 화면 100%
+  3. 속성 적용했을 때 세로 align이 안되면 height 체크
+  4. 가장 간단한 방법
+    - display: grid, placeContent: center
+
+ # span & div / inline & block (default 기준)
+  1. span : 자식 크기만큼 지정 ex) 길이 : 글자가 차지하는 만큼
+  2. div : 부모 크기만큼 지정 ex) 길이 : 부모 태그 넓이만큼
+  3. inline : span이랑 동일 요소
+  4. block : div랑 동일 요소
+  5. 고로.. inline block 쓰기전에 태그 선택 잘하자..
+
+ # b & strong / i & em / u & ins / del / sup & sub
+  1. b, strong : 굵은 글자
+  2. i, em : italic 폰트
+  3. u, ins : 밑줄 글자
+  4. del : 글자 중간에 줄
+  5. sup(위) sub(아래) 첨자
+
+ # img 태그
+  1. 캡션 붙일 때 figure > img, figcaption(여기에 해당 내용)
+  2. 여러개 하이퍼링크 img usemap속성 사용 및 map 태그 사용
+
+ # semantic tags
+  1. main : 페이지 소개 (페이지당 한개만 사용 가능, unique key처럼 사용??)
+  2. section : 특정 구역 grouping(화면에 노출 안할때는 display none)
+  3. article : 블로그 글처럼 여러개의 내용을 담을때 사용(nested 가능 다만 outer랑 inner가 연관되어 있어야 됨)
+  4. semantic 태그 내부에 hn 태그 사용 필요. 화면에 비 노출 시 display none을 이용해서 처리
 
 ## context
  1. 전역적으로 데이터 공유 가능
