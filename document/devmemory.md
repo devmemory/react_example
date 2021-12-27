@@ -1,3 +1,5 @@
+react icon 링크 https://react-icons.github.io/react-icons/
+
 - hook 스터디 예정
 
 - 상태관리 라이브러리 스터디 예정(아마도 redux..?)
@@ -21,6 +23,14 @@
  4. 단일 값 받아오기 필요
 
 ## loading, pagination 처리 완료
+ - 문제점
+  1. 페이지 가져오는 순서 ex) page 1: 1~pageSize page last : ~ last page
+  2. hide 부분 처리 문제 ex) page 1: 1~pageSize (갯수가 pageSize보다 적음)
+  3. page 개수가 10개 이상일 때 UI처리 필요
+
+ - 해결
+  - sql 쿼리 내용 수정 limit, offset 사용
+  - pagination button 추가
 
 ## HOC
  1. with로 네이밍 ex) TaskList, withTaskList

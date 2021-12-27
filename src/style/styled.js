@@ -52,11 +52,9 @@ export const ModalContent = styled.div`
     border-radius: 20px;
 `;
 
-export const PageButton = styled.div`
-    height: 20px;
-    width: 20px;
+export const PageButton = styled.span`
     margin: 4px;
-    display: inline-block;
+    padding: 6px;
     background: ${(props) => props.background};
     color: white;
     cursor: pointer;

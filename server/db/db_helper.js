@@ -10,6 +10,9 @@ const create = () => {
         }
 
         console.log('db created')
+        // for(let i = 1 ; i < 45 ; i++){
+        //     insert({ id: i, title: `Test - ${i}`, day: `test date - ${i}`, reminder: Math.random() < 0.4, hide: Math.random() < 0.2 })
+        // }
     })
 }
 
@@ -84,9 +87,9 @@ const getSingleTask = async (id) => {
     })
 }
 
-const getRange = async (start, end) => {
+const getRange = async (pageNo, pageSize) => {
     return new Promise((res, rej) => {
-        const sql = `select * from task where hide = 0 and id between ${start} and ${end} order by id desc`
+        const sql = `select * from task where hide = 0 order by id desc limit ${pageSize} offset ${pageNo}`
 
         return db.all(sql, (err, rows) => {
             if (err) {
@@ -120,16 +123,6 @@ const updateTask = async (key, value, index) => {
         })
     })
 }
-// setTimeout(() => updateTask('hide', false, 3), 4000)
-
-// setTimeout(() => insert({ id: 1, title: 'Title - 1', day: 'Dec 17', reminder: false, hide: false }), 4000)
-
-// setTimeout(() => insert({ id: 2, title: 'Title - 2', day: 'Dec 19', reminder: true, hide: false }), 4000)
-
-// setTimeout(() => getAllTasks(), 6000)
-
-// setTimeout(() => getLength(), 2000)
-// setTimeout(() => getSingleTask(1), 3000)
 
 module.exports = {
     create,

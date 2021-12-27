@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react"
-import Header from '../../component/functional/header'
-import Tasks from '../../component/functional/tasks'
-import AddTask from '../../component/functional/add_task'
-import { API } from '../../api/common'
-import { Center, PageButton } from '../../style/styled'
-import '../../style/task_style.css'
+import { useEffect, useState } from "react"
 import { Spinner } from "react-bootstrap"
+import { API } from '../../api/common'
+import AddTask from '../../component/functional/add_task'
+import Header from '../../component/functional/header'
+import PaginationButton from "../../component/functional/pagination_button"
+import Tasks from '../../component/functional/tasks'
+import { Center } from '../../style/styled'
+import '../../style/task_style.css'
 
 let page = {}
 
@@ -18,7 +19,7 @@ function FunctionalApp() {
 
     const api = new API()
 
-    const pageSize = 12
+    const pageSize = 3
 
     const initTask = async () => {
         const result = await api.getTasks(1, pageSize)
@@ -113,11 +114,7 @@ function FunctionalApp() {
 
             {(tasks?.length ?? -1) > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : 'No tasks to show'}
 
-            {Array.from({ length: page.lastPage ?? 0 }, (_, i) => (
-                <PageButton key={i} background={page.currentPage === i + 1 ? '#bebebe' : 'grey'} onClick={() => pagination(i + 1)}>
-                    {i + 1}
-                </PageButton>
-            ))}
+            <PaginationButton page={page} pagination={pagination}/>
         </div>
     );
 }

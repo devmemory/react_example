@@ -3,9 +3,10 @@ import Header from '../../component/class/header'
 import Tasks from '../../component/class/tasks'
 import AddTask from '../../component/class/add_task'
 import { API } from '../../api/common'
-import { Center, PageButton } from "../../style/styled"
+import { Center } from "../../style/styled"
 import '../../style/task_style.css'
 import { Spinner } from "react-bootstrap"
+import PaginationButton from "../../component/class/pagination_button"
 
 class ClassApp extends Component {
     constructor() {
@@ -19,7 +20,7 @@ class ClassApp extends Component {
 
         this.page = {}
 
-        this.pageSize = 12
+        this.pageSize = 3
 
         this.api = new API()
 
@@ -69,9 +70,9 @@ class ClassApp extends Component {
     async addTask(task) {
         const result = await this.api.addTask(task)
         if (result.code === 1) {
-            if(this.state.tasks){
+            if (this.state.tasks) {
                 this.setState({ tasks: [result.data, ...this.state.tasks] })
-            } else{
+            } else {
                 this.setState({ tasks: [result.data] })
             }
         } else {
@@ -123,11 +124,7 @@ class ClassApp extends Component {
                 {(this.state.tasks?.length ?? -1) > 0 ?
                     <Tasks tasks={this.state.tasks} onDelete={this.deleteTask} onToggle={this.toggleReminder} /> : 'No tasks to show'}
 
-                {Array.from({ length: this.page.lastPage }, (_, i) => (
-                    <PageButton key={i} background={this.page.currentPage === i + 1 ? '#bebebe' : 'grey'} onClick={() => this.pagination(i + 1)}>
-                        {i + 1}
-                    </PageButton>
-                ))}
+                <PaginationButton page={this.page} pagination={this.pagination} />
             </div>
         )
     }

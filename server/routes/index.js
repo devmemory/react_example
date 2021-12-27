@@ -48,12 +48,12 @@ router.get('/task', async (req, res) => {
             return
         }
 
-        const start = (pageNo - 1) * pageSize + 1
-        const end = pageSize * pageNo
+        // const start = (pageNo - 1) * pageSize + 1
+        // const end = pageSize * pageNo
 
-        console.log('page : ', { start, end })
+        // console.log('page : ', { start, end })
 
-        list = await db.getRange(start, end)
+        list = await db.getRange((pageNo - 1) * pageSize, pageSize)
 
         res.send({ data: { list: list, currentPage: Number(pageNo), totalCount: totalCount }, code: 1 })
     }
