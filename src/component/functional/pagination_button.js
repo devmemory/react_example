@@ -16,7 +16,7 @@ function PaginationButton({page, pagination}) {
     const changeRange = (isAdd) => {
         pageRange = isAdd ? pageRange + 1 : pageRange - 1
         
-        pagination((pageRange - 1) * 10 + 1)
+        pagination(isAdd ? (pageRange - 1) * 10 + 1 : pageRange * 10)
         
         setPageRange(pageRange)
     }

@@ -23,7 +23,7 @@ const insert = async (task) => {
         db.run(`insert into task(id,title,day,reminder,hide) values (?,?,?,?,?)`, [task.id, task.title, task.day, task.reminder ? 1 : 0, task.hide ? 1 : 0], (err) => {
             if (err) {
                 console.log(err.message)
-                return res(err)
+                return rej(err)
             }
 
             console.log(`insert task(${JSON.stringify(task)})`)

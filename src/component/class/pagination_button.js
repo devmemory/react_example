@@ -14,9 +14,9 @@ class PaginationButton extends Component {
         this.changeRange = this.changeRange.bind(this)
     }
 
-    pageList(page) {
+    pageList() {
         const start = (this.pageRange - 1) * 10 + 1
-        const end = 10 * this.pageRange > page.lastPage ? page.lastPage : 10 * this.pageRange
+        const end = 10 * this.pageRange > this.props.page.lastPage ? this.props.page.lastPage : 10 * this.pageRange
 
         return Array(end - start + 1).fill().map((_, index) => start + index)
     }
@@ -24,7 +24,7 @@ class PaginationButton extends Component {
     changeRange(isAdd) {
         this.pageRange = isAdd ? this.pageRange + 1 : this.pageRange - 1
 
-        this.props.pagination((this.pageRange - 1) * 10 + 1)
+        this.props.pagination(isAdd ? (this.pageRange - 1) * 10 + 1 : this.pageRange * 10)
     }
 
     render() {
@@ -35,7 +35,7 @@ class PaginationButton extends Component {
                     <AiFillCaretLeft />
                 </PageButton> : <></>}
 
-                {this.pageList(page).map((e) => (
+                {this.pageList().map((e) => (
                     <PageButton key={e} background={page.currentPage === e ? '#bebebe' : 'grey'} onClick={() => pagination(e)}>
                         {e}
                     </PageButton>
