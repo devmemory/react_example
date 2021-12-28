@@ -10,7 +10,7 @@ react icon 링크 https://react-icons.github.io/react-icons/
 - 보류 : suspense(Future builder랑 비슷한 친구?)
 - portal : 왜 쓰는거지.. 안써도 비슷한거 간단하게 구현 가능한데...?
 
-## sql 현재 id range로 되어있는데 hide값 생각해서 변경 필요...
+## index route관련 로직 변경
 
 ## bootstrap 추가 앞으로 테스트 필요
 
@@ -136,3 +136,7 @@ react icon 링크 https://react-icons.github.io/react-icons/
 # rest api를 이용한 crud 구현 완료
 
 # class형 함수형으로 동일한(?) 화면 및 기능 작업 완료
+
+## setTimeout, setInterval
+ 1. setTimeout = Future.delayed()
+ 2. setInterval = Timer()

@@ -1,12 +1,12 @@
 import { Component } from "react"
-import Header from '../../component/class/header'
-import Tasks from '../../component/class/tasks'
-import AddTask from '../../component/class/add_task'
-import { API } from '../../api/common'
-import { Center } from "../../style/styled"
-import '../../style/task_style.css'
+import Header from '../../../component/todo/class/header'
+import Tasks from '../../../component/todo/class/tasks'
+import AddTask from '../../../component/todo/class/add_task'
+import { API } from '../../../api/common'
+import { Center } from "../../../style/styled"
+import '../../../style/task_style.css'
 import { Spinner } from "react-bootstrap"
-import PaginationButton from "../../component/class/pagination_button"
+import PaginationButton from "../../../component/todo/class/pagination_button"
 
 class ClassApp extends Component {
     constructor() {

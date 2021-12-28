@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { PageButton } from '../../style/styled'
+import { PageButton } from '../../../style/styled'
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai"
 
 class PaginationButton extends Component {

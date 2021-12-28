@@ -5,13 +5,17 @@ const withTaskList = (WrappedComponent) => {
     const Component = () => {
         const api = new API()
         const [tasks, setTasks] = useState([])
-    
-        useEffect( async () => {
-            const res = await api.getTasks();
-            setTasks(res.data)
+
+        useEffect(() => {
+            async function fetchData() {
+                const res = await api.getTasks();
+                setTasks(res.data)
+            }
+
+            fetchData()
         }, [])
 
-        const props = {tasks}
+        const props = { tasks }
 
         return <WrappedComponent {...props} />
     }

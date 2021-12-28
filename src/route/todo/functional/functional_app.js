@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { Spinner } from "react-bootstrap"
-import { API } from '../../api/common'
-import AddTask from '../../component/functional/add_task'
-import Header from '../../component/functional/header'
-import PaginationButton from "../../component/functional/pagination_button"
-import Tasks from '../../component/functional/tasks'
-import { Center } from '../../style/styled'
-import '../../style/task_style.css'
+import { API } from '../../../api/common'
+import AddTask from '../../../component/todo/functional/add_task'
+import Header from '../../../component/todo/functional/header'
+import PaginationButton from "../../../component/todo/functional/pagination_button"
+import Tasks from '../../../component/todo/functional/tasks'
+import { Center } from '../../../style/styled'
+import '../../../style/task_style.css'
 
 let page = {}
 
@@ -54,17 +54,17 @@ function FunctionalApp() {
         }
     }
 
-    useEffect(async () => {
-        await initTask()
+    useEffect(() => {
+        initTask()
     }, [])
 
     const addTask = async (task) => {
         const result = await api.addTask(task)
 
         if (result.code === 1) {
-            if(tasks){
+            if (tasks) {
                 setTasks([result.data, ...tasks])
-            } else{
+            } else {
                 setTasks([result.data])
             }
         } else {
@@ -114,7 +114,7 @@ function FunctionalApp() {
 
             {(tasks?.length ?? -1) > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} /> : 'No tasks to show'}
 
-            <PaginationButton page={page} pagination={pagination}/>
+            <PaginationButton page={page} pagination={pagination} />
         </div>
     );
 }
