@@ -76,7 +76,7 @@ router.post('/task/add', async (req, res) => {
 
     console.log('task add', data)
 
-    if (validateData(data.title, 'string') && validateData(data.day, "string") && validateData(data.reminder, "boolean")) {
+    if (validateData(data.title, 'string') && validateData(data.day, 'string') && validateData(data.reminder, 'boolean')) {
         const id = await db.getLength() ?? 1
 
         const newTest = { id: id + 1, ...data }
@@ -100,7 +100,6 @@ router.post('/task/delete', async (req, res) => {
 
     if (validateData(task, 'object')) {
         if (await db.updateTask('hide', true, task.id)) {
-            task.hide = true
             res.send({ data: task.id, code: 1 })
         } else {
             res.send({ data: `Request failed. (DB update failed)`, code: -1 })
@@ -118,7 +117,6 @@ router.post('/task/toggle', async (req, res) => {
 
     if (validateData(task, 'object')) {
         if (await db.updateTask('reminder', !task.reminder, task.id)) {
-            task.reminder = !task.reminder
             res.send({ data: task.id, code: 1 })
         } else {
             res.send({ data: `Request failed. (DB update failed)`, code: -1 })

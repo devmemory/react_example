@@ -87,9 +87,9 @@ const getSingleTask = async (id) => {
     })
 }
 
-const getRange = async (pageNo, pageSize) => {
+const getRange = async (offset, limit) => {
     return new Promise((res, rej) => {
-        const sql = `select * from task where hide = 0 order by id desc limit ${pageSize} offset ${pageNo}`
+        const sql = `select * from task where hide = 0 order by id desc limit ${limit} offset ${offset}`
 
         return db.all(sql, (err, rows) => {
             if (err) {
