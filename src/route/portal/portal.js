@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 // import { createPortal, ReactDOM } from 'react-dom'
-import { ModalBackground, ModalContent } from '../../style/styled'
+import { ModalBackground, ModalContent } from 'style/styled'
 
 const Modal = ({close}) => {
     return (

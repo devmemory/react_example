@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Container, Navbar, Modal, Form, Button, Card } from 'react-bootstrap'
-import Logo from '../../logo.svg'
+import Logo from 'logo.svg'
 
 const NavBarExample = () => {
     const [content, setContent] = useState('main')

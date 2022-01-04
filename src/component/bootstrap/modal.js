@@ -13,7 +13,7 @@ function ModalExample() {
                 centered
                 backdrop="static"
             >
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title id="contained-modal-title-vcenter">
                         Modal heading
                     </Modal.Title>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { CircleButton } from '../../style/styled'
+import { CircleButton } from 'style/styled'
 
 class Counter extends Component {
     constructor() {

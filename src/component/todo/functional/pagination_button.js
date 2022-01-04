@@ -1,4 +1,4 @@
-import { PageButton } from "../../../style/styled"
+import { PageButton } from "style/styled"
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai"
 import { useState} from 'react'
 

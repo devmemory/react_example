@@ -32,35 +32,54 @@ router.get('/task', async (req, res) => {
 
     let list
 
-    const totalCount = await db.getLength() ?? 0
+    let totalCount
+
+    console.log('start')
+
+    try {
+        totalCount = await db.getLength() ?? 0
+    } catch (error) {
+        return res.send({ data: error, code: -1 })
+    }
 
     if (!pageNo) {
-        list = await db.getAllTasks()
+        try {
+            list = await db.getAllTasks()
+        } catch (error) {
+            return res.send({ data: error, code: -1 })
+        }
 
         res.send({ data: list, code: 1, currentPage: -1, totalCount: totalCount })
     } else {
-
         // 전체 페이지수가 요청수보다 적을 때
         if (pageSize > totalCount) {
-            list = await db.getAllTasks()
+            try {
+                list = await db.getAllTasks()
+            } catch (error) {
+                return res.send({ data: error, code: -1 })
+            }
 
-            res.send({ data: { list: list, currentPage: Number(pageNo), totalCount: totalCount }, code: 1 })
-            return
+            return res.send({ data: { list: list, currentPage: Number(pageNo), totalCount: totalCount }, code: 1 })
         }
 
-        // const start = (pageNo - 1) * pageSize + 1
-        // const end = pageSize * pageNo
-
-        // console.log('page : ', { start, end })
-
-        list = await db.getRange((pageNo - 1) * pageSize, pageSize)
+        try {
+            list = await db.getRange((pageNo - 1) * pageSize, pageSize)
+        } catch (error) {
+            return res.send({ data: error, code: -1 })
+        }
 
         res.send({ data: { list: list, currentPage: Number(pageNo), totalCount: totalCount }, code: 1 })
     }
 })
 
 router.get('/task/:no', async (req, res) => {
-    const task = await db.getSingleTask(req.params.no)
+    let task
+
+    try {
+        task = await db.getSingleTask(req.params.no)
+    } catch (error) {
+        return res.send({ data: error, code: -1 })
+    }
 
     console.log('get task', task)
 
@@ -77,12 +96,25 @@ router.post('/task/add', async (req, res) => {
     console.log('task add', data)
 
     if (validateData(data.title, 'string') && validateData(data.day, 'string') && validateData(data.reminder, 'boolean')) {
-        const id = await db.getLength() ?? 1
+        let id
+
+        try {
+            id = await db.getLength() ?? 1
+        } catch (error) {
+            return res.send({ data: error, code: -1 })
+        }
 
         const newTest = { id: id + 1, ...data }
 
-        if (await db.insert(newTest)) {
+        let isDone
 
+        try {
+            isDone = await db.insert(newTest)
+        } catch (error) {
+            return res.send({ data: error, code: -1 })
+        }
+
+        if (isDone) {
             res.send({ data: newTest, code: 1 })
         } else {
             res.send({ data: `Request failed. (DB insert failed)`, code: -1 })
@@ -96,10 +128,24 @@ router.post('/task/delete', async (req, res) => {
     const data = req.body
     console.log('task delete', data)
 
-    const task = await db.getSingleTask(data.id)
+    let task
+    
+    try {
+        task = await db.getSingleTask(data.id)
+    } catch (error) {
+        return res.send({ data: error, code: -1 })
+    }
 
     if (validateData(task, 'object')) {
-        if (await db.updateTask('hide', true, task.id)) {
+        let isDone
+
+        try {
+            isDone = await db.updateTask('hide', true, task.id)
+        } catch (error) {
+            return res.send({ data: error, code: -1 })
+        }
+
+        if (isDone) {
             res.send({ data: task.id, code: 1 })
         } else {
             res.send({ data: `Request failed. (DB update failed)`, code: -1 })
@@ -113,10 +159,24 @@ router.post('/task/toggle', async (req, res) => {
     const data = req.body
     console.log('task toggle', data)
 
-    const task = await db.getSingleTask(data.id)
+    let task
+    
+    try {
+        task = await db.getSingleTask(data.id)
+    } catch (error) {
+        return res.send({ data: error, code: -1 })
+    }
 
     if (validateData(task, 'object')) {
-        if (await db.updateTask('reminder', !task.reminder, task.id)) {
+        let isDone
+
+        try {
+            isDone = await db.updateTask('reminder', !task.reminder, task.id)
+        } catch (error) {
+            return res.send({ data: error, code: -1 })
+        }
+
+        if (isDone) {
             res.send({ data: task.id, code: 1 })
         } else {
             res.send({ data: `Request failed. (DB update failed)`, code: -1 })

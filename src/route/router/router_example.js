@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { Center } from '../../style/styled'
+import { Center } from 'style/styled'
 
 const RouterExample = () => {
     const param = useParams()

@@ -1,4 +1,4 @@
-import { response } from '../util/util'
+import { response } from 'util/util'
 const baseURL = "api"
 
 // 성공: code: 1, data : object
