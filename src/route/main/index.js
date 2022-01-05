@@ -20,7 +20,8 @@ class Main extends Component {
             { route: '/inheritance', title: 'Inheritance example' },
             { route: '/portal', title: 'Portal example' },
             { route: '/bootstrap', title: 'Bootstrap example' },
-            { route: '/keyboard', title: 'Keyboard example' }
+            { route: '/keyboard', title: 'Keyboard example' },
+            { route: '/album', title: 'Album example' }
         ]
     }
 

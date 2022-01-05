@@ -15,6 +15,7 @@ import InheritanceExample from './inheritance/inheritance'
 import PortalExample from './portal/portal'
 import BootstrapExample from './bootstrap/bootstrap_example'
 import KeyboardExample from './keyboard/keyboard_example'
+import Album from './clone/album'
 
 class Index extends Component {
     constructor(){
@@ -36,6 +37,7 @@ class Index extends Component {
             {path: '/portal', element: (<PortalExample />)},
             {path: '/bootstrap', element: (<BootstrapExample />)},
             {path: '/keyboard', element: (<KeyboardExample/>)},
+            {path: '/album', element: (<Album/>)}
         ]
     }
 

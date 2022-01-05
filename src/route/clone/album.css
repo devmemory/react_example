@@ -1,0 +1,124 @@
+header{
+    height: 65px;
+    width: 100vw;
+    background: #1976D2;
+    color: white;
+    line-height: 65px;
+    font-size: 20px;
+    box-shadow: 0 2px rgb(0,0,0,0.4)
+}
+
+.div-head-text{
+    max-width: 720px;
+    width: 100%;
+    text-align: center;
+    margin: 60px auto 20px auto;
+}
+
+.div-head-text > p:nth-child(1){
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.div-head-text > p:nth-child(2){
+    font-size: 24px;
+    margin: 0 10% 0 10%;
+    color: grey; 
+}
+
+.div-head-text > span:nth-child(3){
+    display: block;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+.btn-main{
+    background: #1976D2;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid #e4e4e4;
+    padding: 6px 12px 6px 12px;
+    margin-right: 20px
+}
+
+.btn-main:hover{
+    background: #1976d2d5
+}
+
+.btn-main-secondary{
+    background: white;
+    color: #1976D2;
+    border-radius: 4px;
+    border: 1px solid #e4e4e4;
+    padding: 6px 12px 6px 12px;
+    margin-right: 20px
+}
+
+.btn-main-secondary:hover{
+    background-color: rgba(0, 0, 0, 0.062);
+}
+
+.div-image-container{
+    max-width: 720px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+}
+
+.div-card{
+    display: inline-block;
+    width: 240px;
+    border-radius: 10px;
+    border: 1px solid #e4e4e4;
+    margin: 10px;
+    box-shadow: 0 1.5px #e4e4e4;
+}
+
+.div-card > img{
+    height: 180px;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.div-card-text{
+    padding: 10px 20px 10px 20px;
+    text-align: start;
+}
+
+.div-card-text > p:nth-child(1){
+    font-size: 24px;
+}
+
+.div-card-text > p:nth-child(2){
+    font-size: 14px;
+}
+
+.div-card-text > div > button{
+    background-color: transparent;
+    border: none;
+    font-size: 12px;
+    padding: 2px 6px 2px 6px;
+    color: #1976D2;
+}
+
+.div-card-text > div > button:hover{
+    background-color: #1976d20a;
+}
+
+footer{
+    margin: 30px 0 30px 0;
+    text-align: center;
+}
+
+footer > p:nth-child(1){
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+footer > p:nth-child(2), p:nth-child(3){
+    color: grey;
+    margin: 0;
+    font-weight: 300;
+}
