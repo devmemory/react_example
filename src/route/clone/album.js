@@ -6,7 +6,7 @@ function Album() {
     // copy : https://mui.com/getting-started/templates/album/
     return (
         <>
-            <header>
+            <header className='header-album'>
                 <AiFillCamera size={25} style={{ margin: '0 20px 0 20px' }} />
                 Album layout
             </header>
