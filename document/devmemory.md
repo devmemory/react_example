@@ -104,6 +104,10 @@ react icon 링크 https://react-icons.github.io/react-icons/
   3. inline : span이랑 동일 요소
   4. block : div랑 동일 요소
   5. 고로.. inline block 쓰기전에 태그 선택 잘하자..
+  6. flex
+   - align-items : 세로
+   - justify-content : 가로
+  7. box-shadow 1(x축) 2(y축) 3(번짐)
 
  - b & strong / i & em / u & ins / del / sup & sub
   1. b, strong : 굵은 글자
