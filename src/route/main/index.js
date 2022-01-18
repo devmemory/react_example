@@ -21,7 +21,8 @@ class Main extends Component {
             { route: '/portal', title: 'Portal example' },
             { route: '/bootstrap', title: 'Bootstrap example' },
             { route: '/keyboard', title: 'Keyboard example' },
-            { route: '/album', title: 'Album example' }
+            { route: '/album', title: 'Album example' },
+            { route: '/animation', title: 'Animation example' }
         ]
     }
 

@@ -16,28 +16,30 @@ import PortalExample from './portal/portal'
 import BootstrapExample from './bootstrap/bootstrap_example'
 import KeyboardExample from './keyboard/keyboard_example'
 import Album from './clone/album'
+import AnimationExample from './animation/example'
 
 class Index extends Component {
-    constructor(){
+    constructor() {
         super()
 
         this.list = [
-            {path: '/', element: (<Main />)},
-            {path: '/counter', element: (<Counter />)},
-            {path: '/router/:text', element: (<RouterExample />)},
-            {path: '/class', element: (<ClassApp />)},
-            {path: '/functional', element: (<FunctionalApp />)},
-            {path: '/context', element: (<ContextExample />)},
-            {path: '/storage', element: (<LocalStorageExample />)},
-            {path: '/error', element: (<ErrorTest />)},
-            {path: '/lazy', element: (<LazyComonent />)},
-            {path: '/ref', element: (<RefExample />)},
-            {path: '/hoc', element: (<HOCExample />)},
-            {path: '/inheritance', element: (<InheritanceExample />)},
-            {path: '/portal', element: (<PortalExample />)},
-            {path: '/bootstrap', element: (<BootstrapExample />)},
-            {path: '/keyboard', element: (<KeyboardExample/>)},
-            {path: '/album', element: (<Album/>)}
+            { path: '/', element: (<Main />) },
+            { path: '/counter', element: (<Counter />) },
+            { path: '/router/:text', element: (<RouterExample />) },
+            { path: '/class', element: (<ClassApp />) },
+            { path: '/functional', element: (<FunctionalApp />) },
+            { path: '/context', element: (<ContextExample />) },
+            { path: '/storage', element: (<LocalStorageExample />) },
+            { path: '/error', element: (<ErrorTest />) },
+            { path: '/lazy', element: (<LazyComonent />) },
+            { path: '/ref', element: (<RefExample />) },
+            { path: '/hoc', element: (<HOCExample />) },
+            { path: '/inheritance', element: (<InheritanceExample />) },
+            { path: '/portal', element: (<PortalExample />) },
+            { path: '/bootstrap', element: (<BootstrapExample />) },
+            { path: '/keyboard', element: (<KeyboardExample />) },
+            { path: '/album', element: (<Album />) },
+            { path: '/animation', element: (<AnimationExample />) }
         ]
     }
 
@@ -45,7 +47,7 @@ class Index extends Component {
         return (
             <BrowserRouter>
                 <Routes>
-                    {this.list.map((e)=> (<Route key={e.path} path={e.path} element={e.element}/>))}
+                    {this.list.map((e) => (<Route key={e.path} path={e.path} element={e.element} />))}
                 </Routes>
             </BrowserRouter>
         )
