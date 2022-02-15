@@ -51,13 +51,6 @@ class TableExample extends Component {
         this.pageLength = 10
 
         this.lastPage = Math.ceil(this.channelList.length / this.state.pageSize)
-
-        this.movePage = this.movePage.bind(this)
-        this.changeOrder = this.changeOrder.bind(this)
-        this.getChannelList = this.getChannelList.bind(this)
-        this.changePageRange = this.changePageRange.bind(this)
-        this.getPageList = this.getPageList.bind(this)
-        this.changePageSize = this.changePageSize.bind(this)
     }
 
     componentDidMount() {
@@ -67,12 +60,12 @@ class TableExample extends Component {
         })
     }
 
-    movePage(index) {
+    movePage = (index) => {
         this.currentPage = index
         this.setState({currentList: this.getChannelList(index) })
     }
 
-    changeOrder(type) {
+    changeOrder = (type) => {
         let order
 
         switch (type) {
@@ -104,13 +97,13 @@ class TableExample extends Component {
         })
     }
 
-    getChannelList(index, pageSize) {
+    getChannelList = (index, pageSize) => {
         const size = pageSize ?? this.state.pageSize
         const firstIndex = (index - 1) * size
         return this.channelList.slice(firstIndex, firstIndex + size);
     }
 
-    getPageList() {
+    getPageList = () => {
         let start = (this.pageRange - 1) * this.pageLength + 1;
         let end = this.pageLength * this.pageRange > this.lastPage ? this.lastPage : this.pageLength * this.pageRange;
 
@@ -119,7 +112,7 @@ class TableExample extends Component {
             .map((_, index) => index + start);
     }
 
-    changePageRange(isAdd) {
+    changePageRange = (isAdd) => {
         this.pageRange = isAdd ? this.pageRange + 1 : this.pageRange - 1;
 
         this.currentPage = isAdd ? (this.pageRange - 1) * this.pageLength + 1 : this.pageRange * this.pageLength
@@ -127,7 +120,10 @@ class TableExample extends Component {
         this.setState({ currentList: this.getChannelList(this.currentPage) })
     }
 
-    changePageSize(e) {
+    changePageSize = (e) => {
+        this.currentPage = 1
+        this.pageRange = 1
+
         const size = Number(e.target.value)
 
         this.lastPage = Math.ceil(this.channelList.length / size)

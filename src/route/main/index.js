@@ -23,7 +23,8 @@ class Main extends Component {
             { route: '/keyboard', title: 'Keyboard example' },
             { route: '/album', title: 'Album example' },
             { route: '/animation', title: 'Animation example' }, { route: '/product-card', title: 'Product card example' },
-            { route: '/table', title: 'Table example' }
+            { route: '/table', title: 'Table example' },
+            { route: '/kakaomap', title: 'KakaoMap example' }
         ]
     }
 

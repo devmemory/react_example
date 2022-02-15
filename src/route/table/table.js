@@ -3,13 +3,6 @@ import { AiFillCaretDown, AiOutlineMinus } from "react-icons/ai";
 import './table.css'
 
 class Table extends Component {
-    constructor(){
-        super()
-
-        this.compactNumber = this.compactNumber.bind(this)
-        this.sortIcon = this.sortIcon.bind(this)
-    }
-
     compactNumber(num) {
         return Intl.NumberFormat('en-US', {
             notation: 'compact',

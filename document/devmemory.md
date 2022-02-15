@@ -80,6 +80,8 @@ react icon 링크 https://react-icons.github.io/react-icons/
 # class형 함수형으로 동일한(?) 화면 및 기능 작업 완료
 
 ## 공부자료
+# class형에서 bind 대신 arrow function 형태로 선언해주면 bind필요 없음
+
 # setTimeout, setInterval
  1. setTimeout = Future.delayed()
  2. setInterval = Timer()
