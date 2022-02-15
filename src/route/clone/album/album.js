@@ -30,7 +30,7 @@ function Album() {
             <div className='div-image-container'>
                 {Array.from({ length: 9 }, (_, index) => index).map((e) => (
                     <div key={e} className='div-card'>
-                        <img src='https://source.unsplash.com/random' />
+                        <img src='https://source.unsplash.com/random' alt='' />
                         <div className='div-card-text'>
                             <p>
                                 Heading

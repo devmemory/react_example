@@ -15,8 +15,10 @@ import InheritanceExample from './inheritance/inheritance'
 import PortalExample from './portal/portal'
 import BootstrapExample from './bootstrap/bootstrap_example'
 import KeyboardExample from './keyboard/keyboard_example'
-import Album from './clone/album'
+import Album from './clone/album/album'
 import AnimationExample from './animation/example'
+import ProductCard from './clone/card/product_card'
+import TableExample from './table/table_example'
 
 class Index extends Component {
     constructor() {
@@ -39,7 +41,15 @@ class Index extends Component {
             { path: '/bootstrap', element: (<BootstrapExample />) },
             { path: '/keyboard', element: (<KeyboardExample />) },
             { path: '/album', element: (<Album />) },
-            { path: '/animation', element: (<AnimationExample />) }
+            {
+                path: '/animation', element: (<AnimationExample />)
+            },
+            {
+                path: '/product-card', element: (<ProductCard />)
+            },
+            {
+                path: '/table', element: (<TableExample />)
+            }
         ]
     }
 

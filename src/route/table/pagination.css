@@ -1,0 +1,15 @@
+.div-page-button {
+    margin: auto;
+}
+
+.span-page-button {
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.span-page-button:hover {
+    color: #00987aa1;
+}

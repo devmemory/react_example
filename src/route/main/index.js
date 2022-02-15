@@ -22,7 +22,8 @@ class Main extends Component {
             { route: '/bootstrap', title: 'Bootstrap example' },
             { route: '/keyboard', title: 'Keyboard example' },
             { route: '/album', title: 'Album example' },
-            { route: '/animation', title: 'Animation example' }
+            { route: '/animation', title: 'Animation example' }, { route: '/product-card', title: 'Product card example' },
+            { route: '/table', title: 'Table example' }
         ]
     }
 
