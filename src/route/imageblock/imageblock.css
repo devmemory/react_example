@@ -1,0 +1,43 @@
+.div-image-block {
+    height: 300px;
+    width: 300px;
+    margin: 10px;
+    border: 0.5px solid #e4e4e4;
+    box-shadow: 0 2px 4px #e4e4e4;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 90% 10%;
+}
+
+.div-image-block > div {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 1px;
+}
+
+.div-image-block > div > div {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 1px;
+}
+
+.div-image-block > p {
+    margin: 4px 0 0 0;
+}
+
+.div-num {
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: multiply;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}

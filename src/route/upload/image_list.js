@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ImageBlock from 'route/imageblock/imageblock'
 import { Center } from 'style/styled'
 
 const imgBaseUrl = 'http://localhost:3000/image'
@@ -10,7 +11,11 @@ class ImageList extends Component {
         this.imageData = window.localStorage.getItem('imgList')
 
         if (this.imageData !== null) {
-            this.imageList = this.imageData.split(',')
+            this.imageList = []
+
+            this.imageData.split(',').forEach((e) => {
+                this.imageList.push(`${imgBaseUrl}/${e}`)
+            })
         }
     }
 
@@ -21,9 +26,7 @@ class ImageList extends Component {
     render() {
         if (this.imageList) {
             return (
-                <div>
-                    {this.imageList.map((e, i) => <img key={i} src={`${imgBaseUrl}/${e}`} alt='' />)}
-                </div>
+                <ImageBlock imageList={this.imageList} title='업로드 이미지' />
             )
         }
 
