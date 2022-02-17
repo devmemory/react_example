@@ -22,6 +22,7 @@ import TableExample from './table/table_example'
 import KakaoMapExample from './kakaomap/kakaomap_example'
 import ImageUploadExample from './upload/image_upload'
 import ImageList from './upload/image_list'
+import ThreeExample from './three/three_example'
 
 class Index extends Component {
     constructor() {
@@ -61,7 +62,10 @@ class Index extends Component {
             },
             {
                 path: '/img-list', element: (<ImageList />)
-            }
+            },
+            {
+                path: '/three', element: (<ThreeExample />)
+            },
         ]
     }
 
