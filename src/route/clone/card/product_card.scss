@@ -1,0 +1,90 @@
+$blue:#6e8cd5;
+$red:#f56060;
+$green:#44c28d;
+$white:white;
+
+#div-card{
+    width: 400px;
+    border: 0.5px solid #e2e2e2;
+}
+
+#div-card > img{
+    width: 100%;
+}
+
+#div-card > div{
+    padding: 20px;
+}
+
+#div-price{
+    display: flex;
+    justify-content: space-between;
+}
+
+#div-price > p:nth-child(1){
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0; 
+}
+
+#div-price > p:nth-child(2){
+    color: #48cfad;
+    margin: 0;
+}
+
+#p-cate {
+    color: #eaebec;
+    margin: 0;
+}
+
+#div-hidden {
+    margin-top: 10px;
+    display: none;
+    transition: height .5s linear;
+}
+
+#div-hidden > p:nth-child(1),p:nth-child(3) {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+    font-size: 14px;
+}
+
+#div-hidden > p:nth-child(2) {
+    color: black;
+    font-size: 13px;
+}
+
+.div-color {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    margin: 2px;
+    border: 0.5px solid #e2e2e2;
+
+    &.blue {
+        background-color: $blue;
+        &:hover{
+            background-color: lighten($blue,10%);
+        }
+    }
+    &.red {
+        background-color: $red;
+        &:hover{
+            background-color: lighten($red,10%);
+        }
+    }
+    &.white {
+        background-color: $white;
+        &:hover{
+            background-color: darken($white,10%);
+        }
+    }
+    &.green {
+        background-color: $green;
+        &:hover{
+            background-color: lighten($green,10%);
+        }
+    }
+}

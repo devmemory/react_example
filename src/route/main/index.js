@@ -24,7 +24,8 @@ class Main extends Component {
             { route: '/album', title: 'Album example' },
             { route: '/animation', title: 'Animation example' }, { route: '/product-card', title: 'Product card example' },
             { route: '/table', title: 'Table example' },
-            { route: '/kakaomap', title: 'KakaoMap example' }
+            { route: '/kakaomap', title: 'KakaoMap example' },
+            { route: '/img-upload', title: 'Image upload example' }
         ]
     }
 

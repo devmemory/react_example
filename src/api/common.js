@@ -1,5 +1,6 @@
 import { response } from 'util/util'
-const baseURL = "api"
+const baseURL = 'api'
+const imageURL = 'image'
 
 // 성공: code: 1, data : object
 // 실패: code: -1, data : 실패 message
@@ -30,11 +31,11 @@ class API {
     getTasks = async (pageNo, pageSize) => {
         let url = `${baseURL}/task`
 
-        if(pageNo){
+        if (pageNo) {
             url += `?pageNo=${pageNo}`
         }
 
-        if(pageSize){
+        if (pageSize) {
             url += `&pageSize=${pageSize}`
         }
 
@@ -99,6 +100,28 @@ class API {
         return {
             data: res.data,
             code: res.code
+        }
+    }
+
+    getImageList = async () => {
+        const res = await response(`${imageURL}/get-imglist`)
+
+        return {
+            code: res.code,
+            data: res.data
+        }
+    }
+
+    uploadImage = async (file, type) => {
+        const formData = new FormData()
+        formData.append('file', file)
+        formData.append('type', type)
+
+        const res = await response(`${imageURL}/upload`, 'POST', formData, { 'Content-Type': 'multipart/form-data;' })
+
+        return {
+            code: res.code,
+            data: res.data
         }
     }
 }

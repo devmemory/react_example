@@ -20,6 +20,8 @@ import AnimationExample from './animation/example'
 import ProductCard from './clone/card/product_card'
 import TableExample from './table/table_example'
 import KakaoMapExample from './kakaomap/kakaomap_example'
+import ImageUploadExample from './upload/image_upload'
+import ImageList from './upload/image_list'
 
 class Index extends Component {
     constructor() {
@@ -53,6 +55,12 @@ class Index extends Component {
             },
             {
                 path: '/kakaomap', element: (<KakaoMapExample />)
+            },
+            {
+                path: '/img-upload', element: (<ImageUploadExample />)
+            },
+            {
+                path: '/img-list', element: (<ImageList />)
             }
         ]
     }

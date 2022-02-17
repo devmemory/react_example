@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const db = require('../db/db_helper')
+const db = require('../../db/db_helper')
 
 const validateData = (data, type) => {
     if (typeof data != type || typeof data == 'undefined' || data === '') {
