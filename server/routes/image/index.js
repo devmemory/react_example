@@ -54,10 +54,9 @@ router.post('/upload', (req, res) => {
 
             console.log({ oldPath, newPath })
 
-            fs.rename(oldPath, newPath, (err) => {
+            fs.copyFile(oldPath, newPath, (err) => {
                 if (err) throw err;
                 res.write('File uploaded')
-                res.end()
             })
 
             res.send({ data: { fields, files }, code: 1 });

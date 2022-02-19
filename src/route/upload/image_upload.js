@@ -53,7 +53,7 @@ class ImageUploadExample extends Component {
 
         const res = await this.api.uploadImage(this.file, this.type)
 
-        toast(res.data)
+        toast('이미지 업로드 완료')
     }
 
     render() {
