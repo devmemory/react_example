@@ -25,7 +25,7 @@ class ImageUploadExample extends Component {
         if (res.code === 1) {
             window.localStorage.setItem('imgList', res.data)
             toast('이미지 리스트 보기 버튼을 눌러주세요')
-            this.setState({hasImage: true})
+            this.setState({ hasImage: true })
         } else {
             toast(res.data)
         }
@@ -53,7 +53,11 @@ class ImageUploadExample extends Component {
 
         const res = await this.api.uploadImage(this.file, this.type)
 
-        toast('이미지 업로드 완료')
+        if (res.code === 1) {
+            toast('이미지 업로드 완료')
+        } else {
+            toast(res.data)
+        }
     }
 
     render() {

@@ -1,17 +1,12 @@
-const {createProxyMiddleware} = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 module.exports = (app) => {
-    app.use(
-        createProxyMiddleware('/api',{
+    const list = ['/api', '/image']
+
+    list.forEach((e) => {
+        app.use(createProxyMiddleware(e, {
             target: 'http://localhost:8080/',
             changeOrigin: true
-        })
-    )
-    
-    app.use(
-        createProxyMiddleware('/image',{
-            target: 'http://localhost:8080/',
-            changeOrigin: true
-        })
-    )
+        }))
+    })
 }

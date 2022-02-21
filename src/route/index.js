@@ -23,6 +23,7 @@ import KakaoMapExample from './kakaomap/kakaomap_example'
 import ImageUploadExample from './upload/image_upload'
 import ImageList from './upload/image_list'
 import ThreeExample from './three/three_example'
+import SocketExample from './socket/socket_example'
 
 class Index extends Component {
     constructor() {
@@ -65,6 +66,9 @@ class Index extends Component {
             },
             {
                 path: '/three', element: (<ThreeExample />)
+            },
+            {
+                path: '/socket', element: (<SocketExample />)
             },
         ]
     }

@@ -26,7 +26,8 @@ class Main extends Component {
             { route: '/table', title: 'Table example' },
             { route: '/kakaomap', title: 'KakaoMap example' },
             { route: '/img-upload', title: 'Image upload example' },
-            { route: '/three', title: 'Three example' }
+            { route: '/three', title: 'Three example' },
+            { route: '/socket', title: 'Socket example'}
         ]
     }
 

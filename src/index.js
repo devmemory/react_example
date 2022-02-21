@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import Index from './route';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-app-polyfill/ie11';
 
 const render = () => ReactDOM.render(
   <React.StrictMode>

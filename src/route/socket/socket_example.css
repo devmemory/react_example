@@ -1,0 +1,117 @@
+#div-message {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 400px;
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 1px 5px #e4e4e4;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    transition-property: width, height;
+    transition-duration: 0.4s, 0.2s;
+}
+
+#div-message > div:nth-child(1){
+    flex-shrink: 0;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background-color: #6e8cd5;
+    color: white;
+    font-weight: bold;
+    padding: 8px 0 8px 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#div-message > div:nth-child(1) > svg{
+    margin: auto 10px auto 0;
+    font-size: 24px;
+}
+
+#div-message > ul:nth-child(2){
+    flex-grow: 1;
+    background-color: #e4e4e4;
+    margin-bottom: 0;
+    padding: 0 12px 0 12px;
+}
+
+#div-message > ul:nth-child(2) > li{
+    list-style: none;
+}
+
+.div-nick{
+    margin-top: 4px;
+    background-color: darkseagreen;
+    color: white;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.div-bubble{
+    padding: 4px 8px 4px 8px;
+    margin: 3px;
+    text-align: left;
+    display: inline-block;
+    max-width: 80%;
+    word-break: break-all;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px grey;
+}
+
+.div-bottom-message{
+    flex-shrink: 0;
+    width: 100%;
+    display: flex;
+    padding: 4px 0 4px 0;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border: 1px solid #e4e4e4;
+    background-color: white;
+}
+
+.div-bottom-message > input {
+    width: 90%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    padding: 2px 0 2px 8px;
+}
+
+.div-bottom-message > svg {
+    color: #6e8cd5;
+    margin: auto 10px auto 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#div-fab {
+    position: absolute;
+    background-color: #6e8cd5;
+    bottom: 20px;
+    right: 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    transition-property: width, height;
+    transition-duration: 0.5s, 0.5s;
+    cursor: pointer;
+}
+
+#div-fab:hover{
+    background-color: #6e8bd5bb;
+}

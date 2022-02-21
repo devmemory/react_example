@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
+import styled, { keyframes } from 'styled-components'
 import "./example.css"
 
 class AnimationExample extends Component {
-    render(){
+    render() {
         return (
             <div>
                 <CSSAnimation />
                 <JSAnimation />
+                <KeyframeExample />
             </div>
         )
     }
 }
 
-class JSAnimation extends Component{
+class JSAnimation extends Component {
     state = {
         disabled: true
     }
@@ -35,18 +37,18 @@ class JSAnimation extends Component{
     }
 }
 
-class CSSAnimation extends Component{
+class CSSAnimation extends Component {
     state = {
         focused: true
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.input.addEventListener('focus', this.focus)
         this.input.addEventListener('blur', this.focus)
     }
 
     focus = () => {
-        this.setState({focused: !this.state.focused})
+        this.setState({ focused: !this.state.focused })
     }
 
     render() {
@@ -57,6 +59,40 @@ class CSSAnimation extends Component{
         )
     }
 }
+
+class KeyframeExample extends Component {
+    render() {
+        return (
+            <Box />
+        )
+    }
+}
+
+const boxFade = keyframes`
+  0% {
+    opacity: 1;
+    top: 100px;
+ 
+  }
+  50% {
+    opacity: 0;
+    top: 400px;
+  }
+  100% {
+    opacity: 1;
+    top: 100px;
+  }
+`;
+const Box = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background: green;
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  animation: ${boxFade} 2s 1s infinite linear alternate;
+`;
 
 const styles = {
     input: {
