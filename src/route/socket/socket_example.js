@@ -21,7 +21,7 @@ class SocketExample extends Component {
     }
 
     componentDidMount() {
-        this.socket = socketIOClient.connect(process.env.REACT_APP_LOCAL_IP)
+        this.socket = socketIOClient.connect(process.env.REACT_APP_SERVER_IP)
 
         this.socket.on('message', (data) => {
             this.addMessage(data)
@@ -33,6 +33,10 @@ class SocketExample extends Component {
     }
 
     sendMessage = () => {
+        if (this.state.message === '') {
+            return
+        }
+
         const data = { name: this.name, message: this.state.message, isAdmin: this.isAdmin }
 
         this.socket.emit('message', data)
@@ -41,11 +45,8 @@ class SocketExample extends Component {
     }
 
     addMessage = (data) => {
-        if (data.message === '') {
-            return
-        }
-
         if (this.socket.connected) {
+            console.log('called')
             this.setState({ list: [...this.state.list, data], message: '' })
         } else {
             alert('Socket is disconnected.')
@@ -54,6 +55,12 @@ class SocketExample extends Component {
 
     toggleFab = (value) => {
         this.setState({ showMessage: value })
+    }
+
+    keyPressed = (e) => {
+        if (e.key === 'Enter') {
+            this.sendMessage()
+        }
     }
 
     render() {
@@ -85,8 +92,13 @@ class SocketExample extends Component {
                             </li>)
                             )}
                         </ul>
-                        <div className='div-bottom-message' onSubmit={this.sendMessage}>
-                            <input type='text' value={this.state.message} onChange={(e) => this.setState({ message: e.target.value })} />
+                        <div className='div-bottom-message'>
+                            <input
+                                type='text'
+                                value={this.state.message}
+                                onChange={(e) => this.setState({ message: e.target.value })}
+                                onKeyDown={this.keyPressed}
+                            />
                             <MdSend type='submit' onClick={this.sendMessage} />
                         </div>
                     </div>

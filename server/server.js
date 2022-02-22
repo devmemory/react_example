@@ -35,6 +35,5 @@ io.on('connection', (socket) => {
         console.log('message',{data})
 
         socket.broadcast.emit('message', data)
-        // io.emit('message', data)
     })
 })
