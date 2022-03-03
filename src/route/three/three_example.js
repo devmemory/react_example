@@ -98,8 +98,9 @@ class ThreeExample extends Component {
     }
 
     addCustomSceneObjects = () => {
-        // this.solarSystemModel()
-        this.texturedModel()
+        this.solarSystemModel()
+        // this.texturedModel()
+        this.dotImagesModel()
         // this.lightTestModel()
 
         this.setupLight()
@@ -277,10 +278,10 @@ class ThreeExample extends Component {
     // dot images
     dotImagesModel = () => {
         const vertices = []
-        for (let i = 0; i < 1000; i++) {
-            const x = Three.MathUtils.randFloatSpread(5)
-            const y = Three.MathUtils.randFloatSpread(5)
-            const z = Three.MathUtils.randFloatSpread(5)
+        for (let i = 0; i < 3000; i++) {
+            const x = Three.MathUtils.randFloatSpread(50)
+            const y = Three.MathUtils.randFloatSpread(50)
+            const z = Three.MathUtils.randFloatSpread(50)
 
             vertices.push(x, y, z)
         }
@@ -299,6 +300,7 @@ class ThreeExample extends Component {
         })
 
         const points = new Three.Points(geometry, material)
+        this.points = points
         this.scene.add(points)
     }
 
@@ -376,7 +378,7 @@ class ThreeExample extends Component {
         const solarSystem = new Three.Object3D()
         this.scene.add(solarSystem)
 
-        const sphere = new Three.SphereGeometry(1, 12, 12)
+        const sphere = new Three.SphereGeometry(1, 48, 48)
         const sunMaterial = new Three.MeshPhongMaterial({ emissive: 0xffff00, flatShading: true })
 
         const sunMesh = new Three.Mesh(sphere, sunMaterial)
@@ -446,9 +448,10 @@ class ThreeExample extends Component {
         //         smallSphere.getWorldPosition(this.light.target.position)
         //     }
         // }
-        // this.solarSystem.rotation.y += 0.01
-        // this.earthOrbit.rotation.y += 0.01
-        // this.moonOrbit.rotation.y += 0.05
+        this.points.rotation.y += 0.01
+        this.solarSystem.rotation.y += 0.01
+        this.earthOrbit.rotation.y += 0.01
+        this.moonOrbit.rotation.y += 0.05
 
         // this.mesh.rotation.y += 0.001
         // this.line.rotation.y += 0.001

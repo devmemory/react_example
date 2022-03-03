@@ -1,5 +1,5 @@
 import { response } from 'util/util'
-const baseURL = 'api'
+const baseURL = `${process.env.REACT_APP_SERVER_IP}/api`
 const imageURL = 'image'
 
 // 성공: code: 1, data : object
