@@ -15,17 +15,21 @@ class KakaoMapExample extends Component {
     }
 
     componentDidMount() {
-        const script = document.createElement('script')
+        this.script = document.createElement('script')
 
-        script.async = true
-        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&libraries=services&appkey=${process.env.REACT_APP_KAKAO_MAP_KEY}`
-        document.head.appendChild(script)
+        this.script.async = true
+        this.script.src = `https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&libraries=services&appkey=${process.env.REACT_APP_KAKAO_MAP_KEY}`
+        document.head.appendChild(this.script)
 
-        script.onload = () => {
+        this.script.onload = () => {
             kakao.maps.load(() => {
                 this.loadOption()
             })
         }
+    }
+
+    componentWillUnmount(){
+        document.head.removeChild(this.script)
     }
 
     loadOption = () => {

@@ -448,7 +448,7 @@ class ThreeExample extends Component {
         //         smallSphere.getWorldPosition(this.light.target.position)
         //     }
         // }
-        this.points.rotation.y += 0.01
+        this.points.rotation.y += 0.001
         this.solarSystem.rotation.y += 0.01
         this.earthOrbit.rotation.y += 0.01
         this.moonOrbit.rotation.y += 0.05

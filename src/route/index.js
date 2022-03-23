@@ -37,7 +37,7 @@ class Index extends Component {
             { path: '/functional', element: (<FunctionalApp />) },
             { path: '/context', element: (<ContextExample />) },
             { path: '/storage', element: (<LocalStorageExample />) },
-            { path: '/error', element: (<ErrorTest />) },
+            { path: '*', element: (<ErrorTest />) },
             { path: '/lazy', element: (<LazyComonent />) },
             { path: '/ref', element: (<RefExample />) },
             { path: '/hoc', element: (<HOCExample />) },
