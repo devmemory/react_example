@@ -46,6 +46,20 @@ const getLength = async () => {
     })
 }
 
+const getLastIndex = async () => {
+    return new Promise((res, rej) => {
+        return db.get('select count(*) from task', (err, row) => {
+            if (err) {
+                console.log(err.message)
+                return rej(err)
+            }
+
+            console.log(`length : ${row['count(*)']}`)
+            return res(row['count(*)'])
+        })
+    })
+}
+
 const getAllTasks = async () => {
     return new Promise((res, rej) => {
         return db.all('select * from task where hide = 0 order by id desc', (err, rows) => {
@@ -131,5 +145,6 @@ module.exports = {
     updateTask,
     getRange,
     getSingleTask,
-    getLength
+    getLength,
+    getLastIndex
 }

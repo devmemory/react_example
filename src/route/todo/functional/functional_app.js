@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react"
 import { Spinner } from "react-bootstrap"
-import { API } from 'api/common'
+import API from 'api/common'
 import AddTask from 'component/todo/functional/add_task'
 import Header from 'component/todo/functional/header'
 import PaginationButton from "component/todo/functional/pagination_button"

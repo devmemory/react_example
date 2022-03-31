@@ -2,7 +2,7 @@ import { Component } from "react"
 import Header from 'component/todo/class/header'
 import Tasks from 'component/todo/class/tasks'
 import AddTask from 'component/todo/class/add_task'
-import { API } from 'api/common'
+import API from 'api/common'
 import { Center } from "style/styled"
 import 'style/task_style.css'
 import { Spinner } from "react-bootstrap"

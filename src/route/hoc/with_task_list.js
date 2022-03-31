@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { API } from "api/common"
+import API from "api/common"
 
 const withTaskList = (WrappedComponent) => {
     const Component = () => {

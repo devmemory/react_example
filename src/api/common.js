@@ -1,35 +1,12 @@
 import { response } from 'util/util'
-const baseURL = `${process.env.REACT_APP_SERVER_IP}/api`
+import Api from './api'
 const imageURL = 'image'
 
 // 성공: code: 1, data : object
 // 실패: code: -1, data : 실패 message
-class API {
-    getTasksAjax = (id) => {
-        let req = new XMLHttpRequest()
-
-        let url = `${baseURL}/task`
-        if (id != null) {
-            url += `/${id}`
-        }
-
-        // 내부 데이터에 따라서 별도 처리 필요..
-        req.onreadystatechange = () => {
-            if (req.readyState === XMLHttpRequest.DONE) {
-                if (req.status === 200) {
-                    console.log(req.response)
-                } else {
-                    console.log(`error', 'status code : ${req.status}`)
-                }
-            }
-        }
-
-        req.open('GET', url)
-        req.send()
-    }
-
+class CommonApi extends Api {
     getTasks = async (pageNo, pageSize) => {
-        let url = `${baseURL}/task`
+        let url = `/api/task`
 
         if (pageNo) {
             url += `?pageNo=${pageNo}`
@@ -39,11 +16,9 @@ class API {
             url += `&pageSize=${pageSize}`
         }
 
-
         console.log(url)
 
-        const res = await response(url)
-        //await tryFetch(url)
+        const res = await super.get(url)
 
         return {
             data: res.data,
@@ -52,7 +27,7 @@ class API {
     }
 
     getSingleTask = async (id) => {
-        const res = await response(`${baseURL}/task/${id}`)
+        const res = await super.get(`/api/task/${id}`)
 
         return {
             data: res.data,
@@ -62,12 +37,7 @@ class API {
 
     // task
     addTask = async (task) => {
-        const res = await response(`${baseURL}/task/add`, 'POST', task)
-        // await tryFetch(`${baseURL}/task/add`, {
-        //     method: "POST",
-        //     headers: { "content-type": "application/json" },
-        //     body: JSON.stringify(task)
-        // })
+        const res = await super.post(`/api/task/add`, task)
 
         return {
             data: res.data,
@@ -76,12 +46,7 @@ class API {
     }
 
     deleteTask = async (id) => {
-        const res = await response(`${baseURL}/task/delete`, 'POST', { id })
-        // await tryFetch(`${baseURL}/task/delete`, {
-        //     method: "POST",
-        //     headers: { "content-type": "application/json" },
-        //     body: JSON.stringify({ id: id })
-        // })
+        const res = await super.post(`/api/task/delete`, { id })
 
         return {
             data: res.data,
@@ -90,12 +55,7 @@ class API {
     }
 
     toggleReminder = async (id) => {
-        const res = await response(`${baseURL}/task/toggle`, 'POST', { id })
-        // await tryFetch(`${baseURL}/task/toggle`, {
-        //     method: "POST",
-        //     headers: { "content-type": "application/json" },
-        //     body: JSON.stringify({ id: id })
-        // })
+        const res = await super.post(`/api/task/toggle`, { id })
 
         return {
             data: res.data,
@@ -126,4 +86,4 @@ class API {
     }
 }
 
-export { API }
+export default CommonApi

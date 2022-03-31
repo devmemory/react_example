@@ -99,7 +99,7 @@ router.post('/task/add', async (req, res) => {
         let id
 
         try {
-            id = await db.getLength() ?? 1
+            id = await db.getLastIndex() ?? 1
         } catch (error) {
             return res.send({ data: error, code: -1 })
         }
