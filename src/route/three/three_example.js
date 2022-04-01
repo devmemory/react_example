@@ -3,7 +3,7 @@ import * as Three from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { VertexNormalsHelper } from 'three/examples/jsm/helpers/VertexNormalsHelper'
 import disc from './texture/disc.png'
-import worldMap from './texture/world_map.png'
+// import worldMap from './texture/world_map.png'
 import baseColor from './texture/Glass_Window_002_basecolor.jpg'
 import mapAO from './texture/Glass_Window_002_ambientOcclusion.jpg'
 import mapHeight from './texture/Glass_Window_002_height.png'
@@ -16,8 +16,7 @@ import mapLight from './texture/light2.jpg'
 class ThreeExample extends Component {
     componentDidMount() {
         this.setupScene();
-        this.addCustomSceneObjects();
-        this.startAnimationLoop();
+
         window.addEventListener('resize', this.handleWindowResize);
     }
 
@@ -39,6 +38,9 @@ class ThreeExample extends Component {
         this.renderer = new Three.WebGLRenderer();
         this.renderer.setSize(width, height);
         this.mount.appendChild(this.renderer.domElement);
+
+        this.addCustomSceneObjects();
+        this.startAnimationLoop();
     };
 
     setupCamera = () => {

@@ -23,14 +23,9 @@ class ClassApp extends Component {
         this.pageSize = 3
 
         this.api = new API()
-
-        this.addTask = this.addTask.bind(this)
-        this.deleteTask = this.deleteTask.bind(this)
-        this.toggleReminder = this.toggleReminder.bind(this)
-        this.pagination = this.pagination.bind(this)
     }
 
-    async initTask() {
+    initTask = async () => {
         // this.api.getTasksAjax()
 
         const result = await this.api.getTasks(1, this.pageSize)
@@ -47,7 +42,7 @@ class ClassApp extends Component {
         }
     }
 
-    async pagination(index) {
+    pagination = async (index) => {
         if (index <= this.page.lastPage) {
             const result = await this.api.getTasks(index, this.pageSize)
 
@@ -67,7 +62,7 @@ class ClassApp extends Component {
         this.initTask()
     }
 
-    async addTask(task) {
+    addTask = async (task) => {
         const result = await this.api.addTask(task)
         if (result.code === 1) {
             if (this.state.tasks) {
@@ -80,7 +75,7 @@ class ClassApp extends Component {
         }
     }
 
-    async deleteTask(id) {
+    deleteTask = async (id) => {
         const result = await this.api.deleteTask(id)
         if (result.code === 1) {
             const task = this.state.tasks.find((element) => element.id === result.data)
@@ -92,7 +87,7 @@ class ClassApp extends Component {
         }
     }
 
-    async toggleReminder(id) {
+    toggleReminder = async (id) => {
         const result = await this.api.toggleReminder(id)
         if (result.code === 1) {
             const task = this.state.tasks.find((element) => element.id === result.data)
