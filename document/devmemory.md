@@ -75,7 +75,12 @@ react icon 링크 https://react-icons.github.io/react-icons/
 # class형 함수형으로 동일한(?) 화면 및 기능 작업 완료
 
 ## 공부자료
-- hook
+# lazy import
+1. react 웹은 첫방문시 필요한 리소스 다운로드 해서 로딩이 느림
+2. lazy 사용으로 필요한 페이지 리소스만 다운르도
+3. 페이지를 lazy import하면서 중간에 생기는 텀은 suspense를 이용해서 처리
+
+# hook
 useState = setState와 비슷 다만 함수형 내부에서 state를 사용하지 않는 변수는 초기화 됨
 useEffect = didMount, willUnmount(return에서 처리)가능. 의존 배열에 변경되는 값을 넣으면 값이 변경될때마다 콜됨. didMount처럼 사용시 의존 배열 안넣으면 무한루프...
 
