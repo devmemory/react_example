@@ -1,12 +1,5 @@
 react icon 링크 https://react-icons.github.io/react-icons/
 
-- hook 스터디 예정
-
-- 상태관리 라이브러리 스터디 예정(아마도 redux..?)
- 1. reducer
- 2. action
- 3. store
-
 - 보류 : suspense(Future builder랑 비슷한 친구?)
 - portal : 왜 쓰는거지.. 안써도 비슷한거 간단하게 구현 가능한데...?
 
@@ -82,6 +75,21 @@ react icon 링크 https://react-icons.github.io/react-icons/
 # class형 함수형으로 동일한(?) 화면 및 기능 작업 완료
 
 ## 공부자료
+- hook
+useState = setState와 비슷 다만 함수형 내부에서 state를 사용하지 않는 변수는 초기화 됨
+useEffect = didMount, willUnmount(return에서 처리)가능. 의존 배열에 변경되는 값을 넣으면 값이 변경될때마다 콜됨. didMount처럼 사용시 의존 배열 안넣으면 무한루프...
+
+# redux 기본 구조
+ 1. store
+ 2. action
+ 3. reducer
+
+ reducer에 action과 state를 넘겨서 상태 변경
+
+# form
+ 1. input태그 type='email'인경우 자동으로 validation
+ 2. form태크 action='mailTo:이메일'로 이메일 보내기 가능
+
 # class형에서 bind 대신 arrow function 형태로 선언해주면 bind필요 없음
 
 # setTimeout, setInterval

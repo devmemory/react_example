@@ -1,29 +1,30 @@
-import { Component } from 'react'
+import { Component, lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import ClassApp from './todo/class/class_app'
-import Counter from './counter/counter'
-import FunctionalApp from './todo/functional/functional_app'
+import { Spinner } from 'react-bootstrap'
 import Main from './main'
-import RouterExample from './router/router_example'
-import ContextExample from './context/context_example'
-import LocalStorageExample from './storage/storage_example'
-import ErrorTest from './error/error_test'
-import LazyComonent from './suspense/lazy_component'
-import RefExample from './ref/ref_example'
-import HOCExample from './hoc/hoc_example'
-import InheritanceExample from './inheritance/inheritance'
-import PortalExample from './portal/portal'
-import BootstrapExample from './bootstrap/bootstrap_example'
-import KeyboardExample from './keyboard/keyboard_example'
-import Album from './clone/album/album'
-import AnimationExample from './animation/example'
-import ProductCard from './clone/card/product_card'
-import TableExample from './table/table_example'
-import KakaoMapExample from './kakaomap/kakaomap_example'
-import ImageUploadExample from './upload/image_upload'
-import ImageList from './upload/image_list'
-import ThreeExample from './three/three_example'
-import SocketExample from './socket/socket_example'
+const ClassApp = lazy(() => import('./todo/class/class_app'))
+const Counter = lazy(() => import('./counter/counter'))
+const FunctionalApp = lazy(() => import('./todo/functional/functional_app'))
+const RouterExample = lazy(() => import('./router/router_example'))
+const ContextExample = lazy(() => import('./context/context_example'))
+const LocalStorageExample = lazy(() => import('./storage/storage_example'))
+const ErrorTest = lazy(() => import('./error/error_test'))
+const LazyComonent = lazy(() => import('./suspense/lazy_component'))
+const RefExample = lazy(() => import('./ref/ref_example'))
+const HOCExample = lazy(() => import('./hoc/hoc_example'))
+const InheritanceExample = lazy(() => import('./inheritance/inheritance'))
+const PortalExample = lazy(() => import('./portal/portal'))
+const BootstrapExample = lazy(() => import('./bootstrap/bootstrap_example'))
+const KeyboardExample = lazy(() => import('./keyboard/keyboard_example'))
+const Album = lazy(() => import('./clone/album/album'))
+const AnimationExample = lazy(() => import('./animation/example'))
+const ProductCard = lazy(() => import('./clone/card/product_card'))
+const TableExample = lazy(() => import('./table/table_example'))
+const KakaoMapExample = lazy(() => import('./kakaomap/kakaomap_example'))
+const ImageUploadExample = lazy(() => import('./upload/image_upload'))
+const ImageList = lazy(() => import('./upload/image_list'))
+const ThreeExample = lazy(() => import('./three/three_example'))
+const SocketExample = lazy(() => import('./socket/socket_example'))
 
 class Index extends Component {
     constructor() {
@@ -76,9 +77,17 @@ class Index extends Component {
     render() {
         return (
             <BrowserRouter>
-                <Routes>
-                    {this.list.map((e) => (<Route key={e.path} path={e.path} element={e.element} />))}
-                </Routes>
+                <Suspense fallback={<Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                />}>
+                    <Routes>
+                        {this.list.map((e) => (<Route key={e.path} path={e.path} element={e.element} />))}
+                    </Routes>
+                </Suspense>
             </BrowserRouter>
         )
     }
