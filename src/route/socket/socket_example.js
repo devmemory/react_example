@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import socketIOClient from 'socket.io-client'
+import {io} from 'socket.io-client'
 import './socket_example.css'
 import { MdSend, MdClose } from "react-icons/md";
 
@@ -21,7 +21,9 @@ class SocketExample extends Component {
     }
 
     componentDidMount() {
-        this.socket = socketIOClient.connect(process.env.REACT_APP_SERVER_IP)
+        this.socket = io(process.env.REACT_APP_SERVER_IP)
+
+        console.log(this.socket)
 
         this.socket.on('message', (data) => {
             this.addMessage(data)

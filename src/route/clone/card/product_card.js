@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames'
 import { Center } from 'style/styled'
-import './product_card.scss'
+// import './product_card.scss'
 
 class ProductCard extends Component {
     constructor() {

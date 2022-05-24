@@ -21,7 +21,7 @@ class KeyboardExample extends Component {
     }
 
     componentWillUnmount() {
-        document.addEventListener('keydown', this.keyEvent, false)
+        document.removeEventListener('keydown', this.keyEvent, false)
     }
 
     render() {
